@@ -48,6 +48,24 @@ export const videoCategories = [
 
 export const videos: ShowcaseVideo[] = [
   {
+    id: "tinggi",
+    title: "Bagaimana Jika Makin Tua, Makin Tinggi?",
+    description: "Kisah Budi di kota tempat setiap ulang tahun membuatmu makin tinggi — dari 1 meter sampai 25 meter.",
+    category: "Story Animation",
+    thumbnail: "/videos/thumbnails/tinggi.jpg",
+    videoUrl: "/videos/tinggi.mp4",
+    aspectRatio: "9:16",
+  },
+  {
+    id: "gravitasi",
+    title: "Bagaimana Jika Dunia Tanpa Gravitasi?",
+    description: "Warga kota tiba-tiba melayang ke langit — cerita kartun 3D tentang dunia tanpa gravitasi.",
+    category: "Story Animation",
+    thumbnail: "/videos/thumbnails/gravitasi.jpg",
+    videoUrl: "/videos/gravitasi.mp4",
+    aspectRatio: "9:16",
+  },
+  {
     id: "example-01",
     title: "Example Animation 01",
     description: "Slot contoh animasi stick figure — video segera ditambahkan.",
@@ -55,15 +73,6 @@ export const videos: ShowcaseVideo[] = [
     thumbnail: "",
     videoUrl: "",
     aspectRatio: "9:16",
-  },
-  {
-    id: "example-02",
-    title: "Example Animation 02",
-    description: "Slot contoh story animation — video segera ditambahkan.",
-    category: "Story Animation",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "16:9",
   },
   {
     id: "example-03",
@@ -88,15 +97,6 @@ export const videos: ShowcaseVideo[] = [
     title: "Example Animation 05",
     description: "Slot contoh creative experiment — video segera ditambahkan.",
     category: "Creative Experiments",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "9:16",
-  },
-  {
-    id: "example-06",
-    title: "Example Animation 06",
-    description: "Slot contoh story animation — video segera ditambahkan.",
-    category: "Story Animation",
     thumbnail: "",
     videoUrl: "",
     aspectRatio: "9:16",
