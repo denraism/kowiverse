@@ -1,0 +1,65 @@
+/**
+ * ─────────────────────────────────────────────────────────────
+ *  KOWIVERSE — BRAND & SEO CONFIGURATION
+ * ─────────────────────────────────────────────────────────────
+ *  Edit brand identity, logo, navigation and SEO metadata here.
+ *  Colours live in app/globals.css (and config/theme.ts for non-CSS uses).
+ */
+
+import { themeColors } from "./theme";
+
+export const site = {
+  name: "KowiVerse",
+  tagline: "Animation Prompts. Unlimited Possibilities.",
+  category: "Animation Prompter",
+
+  /**
+   * Public URL of the website (used for canonical URLs, Open Graph and sitemap).
+   * Set NEXT_PUBLIC_SITE_URL in your hosting environment, e.g. https://www.domainkamu.com
+   */
+  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+
+  /**
+   * Logo.
+   * Leave `src` empty to use the built-in SVG "K" mark + wordmark.
+   * To use your own logo: put the file in /public/images (e.g. /images/logo.svg)
+   * and set `src: "/images/logo.svg"` + its width/height in pixels.
+   */
+  logo: {
+    src: "",
+    alt: "KowiVerse logo",
+    width: 140,
+    height: 32,
+  },
+
+  seo: {
+    title: "KowiVerse — Animation Prompts for Creative Minds",
+    description:
+      "Explore KowiVerse, temukan inspirasi animasi, lihat contoh karya, dan pilih paket animation prompts yang sesuai dengan kebutuhan kreatifmu.",
+    keywords: [
+      "animation prompts",
+      "AI animation prompts",
+      "prompt animasi",
+      "ide animasi AI",
+      "creative animation ideas",
+      "animation workflow",
+      "KowiVerse",
+    ],
+    locale: "id_ID",
+    themeColor: themeColors.bg,
+  },
+} as const;
+
+/** Navigation items. `href` must match a section id on the page. */
+export const navItems = [
+  { label: "Home", href: "#home" },
+  { label: "Showcase", href: "#showcase" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Features", href: "#features" },
+  { label: "How It Works", href: "#how-it-works" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+] as const;
+
+/** The "Get Started" button in the navbar. */
+export const navCta = { label: "Get Started", href: "#pricing" } as const;

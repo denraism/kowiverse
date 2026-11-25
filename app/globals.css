@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/* ─── Design tokens ───────────────────────────────────────────
+   KowiVerse × Ubuntu-inspired palette. This block is the single
+   source of truth for colours — components only use these tokens
+   (e.g. bg-card, text-muted, border-line, bg-orange).
+   Visual balance: ~65% aubergine backgrounds · ~25% purple
+   surfaces · ~10% orange accents (CTAs, active states, icons).
+   ──────────────────────────────────────────────────────────── */
+@theme {
+  /* Backgrounds & surfaces */
+  --color-bg: #1b1230;        /* Deep Aubergine — primary background */
+  --color-bg-2: #25163a;      /* Dark Purple — secondary background */
+  --color-card: #302044;      /* Purple Surface — cards */
+  --color-card-2: #3a2852;    /* derived: raised / hover surface */
+
+  /* Borders */
+  --color-line: #493557;      /* Muted Purple — default border */
+  --color-line-2: #5c4670;    /* derived: stronger border (buttons, controls) */
+
+  /* Accents */
+  --color-orange: #e95420;      /* Ubuntu Orange — CTAs, active states, icons */
+  --color-orange-2: #f06a3a;    /* derived: orange hover */
+  --color-orange-soft: #f47a4c; /* derived: small orange TEXT on purple surfaces (AA contrast) */
+  --color-purple: #77216f;      /* Ubuntu Purple — secondary accent */
+  --color-magenta: #5e2750;     /* Dark Magenta — supporting purple */
+  --color-orchid: #c77dbf;      /* derived: light purple for text/lines on dark */
+  --color-bronze: #c98a5e;      /* Kowi Bronze accent */
+
+  /* Text */
+  --color-fg: #ffffff;          /* Primary text */
+  --color-muted: #d6ccdf;       /* Soft Lavender — secondary text */
+  --color-subtle: #a797b8;      /* derived: tertiary text / meta labels */
+  --color-ink: #1b1230;         /* text on orange (white on #E95420 fails WCAG AA) */
+
+  /* Third-party — intentionally NOT themed */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1ebe5a;
+
+  /* Shadows */
+  --shadow-cta: 0 10px 30px -12px color-mix(in srgb, var(--color-orange) 70%, transparent);
+  --shadow-elevated: 0 40px 120px -40px rgb(9 4 20 / 0.85);
+  --shadow-metal: 0 40px 100px -50px color-mix(in srgb, var(--color-purple) 90%, transparent);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-blink: blink 1.1s steps(2, start) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    to { visibility: hidden; }
+  }
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-orange);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-orange);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  section[id],
+  footer[id] {
+    scroll-margin-top: 4.5rem;
+  }
+}
+
+/* ─── Utilities ─────────────────────────────────────────────── */
+@utility container-page {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 5.5rem;
+
+  @media (min-width: 768px) {
+    padding-block: 7rem;
+  }
+  @media (min-width: 1280px) {
+    padding-block: 8.5rem;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility bg-grid {
+  --grid-line: color-mix(in srgb, var(--color-muted) 6%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* ─── Named surfaces (gradients built only from tokens) ────── */
+
+/* Hero: aubergine with a soft Ubuntu-purple bloom + magenta undertone,
+   fading back to the base aubergine so it blends into the next band */
+@utility bg-hero {
+  background:
+    linear-gradient(180deg, transparent 55%, var(--color-bg)),
+    radial-gradient(55% 60% at 85% 0%, color-mix(in srgb, var(--color-purple) 45%, transparent), transparent 70%),
+    radial-gradient(45% 45% at 0% 80%, color-mix(in srgb, var(--color-magenta) 35%, transparent), transparent 70%),
+    var(--color-bg);
+}
+
+/* Gentle purple glow at the top of a section */
+@utility bg-glow-top {
+  background: radial-gradient(50% 60% at 50% 0%, color-mix(in srgb, var(--color-purple) 28%, transparent), transparent);
+}
+
+/* Inner stage of illustrations (hero visual, placeholder thumbnails) */
+@utility bg-stage {
+  background: radial-gradient(120% 90% at 50% 0%, var(--color-card), var(--color-bg) 85%);
+}
+
+/* Kowi Bronze — purple surface with a faint bronze warmth */
+@utility surface-bronze {
+  background:
+    radial-gradient(90% 60% at 0% 0%, color-mix(in srgb, var(--color-bronze) 12%, transparent), transparent 60%),
+    var(--color-card);
+}
+
+/* Kowi Metal — premium purple surface */
+@utility surface-metal {
+  background:
+    radial-gradient(110% 70% at 100% 0%, color-mix(in srgb, var(--color-orange) 14%, transparent), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--color-purple) 55%, var(--color-card)), var(--color-card) 45%, var(--color-bg-2));
+}
+
+/* Final CTA — Ubuntu purple → magenta → aubergine */
+@utility surface-cta {
+  background:
+    radial-gradient(60% 80% at 50% 100%, color-mix(in srgb, var(--color-orange) 16%, transparent), transparent 70%),
+    linear-gradient(140deg, var(--color-purple), var(--color-magenta) 45%, var(--color-bg-2));
+}
+
+/* Showcase card height — width is derived from each video's aspect ratio */
+:root {
+  --card-h: 22rem;
+}
+@media (min-width: 768px) {
+  :root {
+    --card-h: 26rem;
+  }
+}
+@media (min-width: 1440px) {
+  :root {
+    --card-h: 29rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Carousel aligns with the page container on the left and bleeds to the right edge */
+@utility carousel-pad {
+  --pad: max(1.25rem, calc((100% - 80rem) / 2 + 1.25rem));
+  padding-inline: var(--pad);
+  scroll-padding-inline: var(--pad);
+
+  @media (min-width: 640px) {
+    --pad: max(2rem, calc((100% - 80rem) / 2 + 2rem));
+  }
+  @media (min-width: 1024px) {
+    --pad: max(2.5rem, calc((100% - 80rem) / 2 + 2.5rem));
+  }
+}
+
+/* Floating WhatsApp steps aside while a modal or the mobile menu is open */
+html[data-overlay="open"] .wa-float {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: scale(0.8) !important;
+}

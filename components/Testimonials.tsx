@@ -1,0 +1,100 @@
+import Image from "next/image";
+import { MessageSquareQuote, Star } from "lucide-react";
+import { testimonialsContent } from "@/config/content";
+import { testimonials } from "@/config/testimonials";
+import { buildWhatsAppUrl } from "@/lib/links";
+import { buttonStyles, cn } from "@/lib/ui";
+import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join("");
+}
+
+export function Testimonials() {
+  // Only real, complete testimonials are rendered — empty entries are skipped.
+  const items = testimonials.filter((t) => t.name.trim() && t.quote.trim());
+  const whatsappUrl = buildWhatsAppUrl(undefined, testimonialsContent.shareMessage);
+
+  if (!items.length && !testimonialsContent.showEmptyState) return null;
+
+  return (
+    <section id="testimonials" aria-labelledby="testimonials-title" className="section-y relative border-t border-line/60 bg-bg-2">
+      <div className="container-page">
+        <SectionHeading
+          id="testimonials-title"
+          label={testimonialsContent.label}
+          title={testimonialsContent.title}
+          description={testimonialsContent.description}
+        />
+
+        {items.length ? (
+          <ul className="mt-14 grid gap-4 sm:grid-cols-2 md:mt-16 lg:grid-cols-3 lg:gap-5">
+            {items.map((t, i) => {
+              const rating = Math.max(0, Math.min(5, Math.round(t.rating)));
+              return (
+                <Reveal as="li" key={`${t.name}-${i}`} delay={(i % 3) * 0.08} className="h-full">
+                  <figure className="flex h-full flex-col rounded-2xl border border-line bg-card p-6 sm:p-7">
+                    {rating > 0 ? (
+                      <div className="flex gap-1 text-orange" role="img" aria-label={`Rating ${rating} dari 5`}>
+                        {Array.from({ length: rating }).map((_, s) => (
+                          <Star key={s} className="size-4 fill-current" aria-hidden="true" />
+                        ))}
+                      </div>
+                    ) : null}
+                    <blockquote className={cn("flex-1 text-[0.9375rem] leading-relaxed text-fg/90", rating > 0 && "mt-5")}>
+                      “{t.quote}”
+                    </blockquote>
+                    <figcaption className="mt-7 flex items-center gap-3 border-t border-line pt-5">
+                      {t.avatar ? (
+                        <Image src={t.avatar} alt={`Foto ${t.name}`} width={40} height={40} className="size-10 rounded-full object-cover" />
+                      ) : (
+                        <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-full bg-purple/60 text-sm font-semibold text-fg ring-1 ring-orchid/30">
+                          {initials(t.name)}
+                        </span>
+                      )}
+                      <span>
+                        <span className="block text-sm font-semibold">{t.name}</span>
+                        {t.role ? <span className="block text-xs text-muted">{t.role}</span> : null}
+                      </span>
+                    </figcaption>
+                  </figure>
+                </Reveal>
+              );
+            })}
+          </ul>
+        ) : (
+          <Reveal className="mt-14 md:mt-16">
+            <div className="flex flex-col items-start gap-6 rounded-2xl border border-dashed border-line-2 bg-card/60 p-7 sm:p-10 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-5">
+                <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-purple/45 text-orange ring-1 ring-orchid/25">
+                  <MessageSquareQuote className="size-5" aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em] sm:text-xl">{testimonialsContent.emptyTitle}</h3>
+                  <p className="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-muted">{testimonialsContent.emptyDescription}</p>
+                </div>
+              </div>
+              {whatsappUrl ? (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-wa-avoid
+                  className={cn(buttonStyles.secondary, "w-full shrink-0 md:w-auto")}
+                >
+                  {testimonialsContent.emptyCta}
+                </a>
+              ) : null}
+            </div>
+          </Reveal>
+        )}
+      </div>
+    </section>
+  );
+}
