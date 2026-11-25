@@ -66,6 +66,15 @@ export const videos: ShowcaseVideo[] = [
     aspectRatio: "9:16",
   },
   {
+    id: "hujan-terbalik",
+    title: "Bagaimana Jika Hujan Turun ke Langit?",
+    description: "Di kota ini air terbang ke atas — jalanan selalu kering, sampai awan terlalu berat dan semuanya jatuh sekaligus.",
+    category: "Story Animation",
+    thumbnail: "/videos/thumbnails/hujan-terbalik.jpg",
+    videoUrl: "/videos/hujan-terbalik.mp4",
+    aspectRatio: "9:16",
+  },
+  {
     id: "example-01",
     title: "Example Animation 01",
     description: "Slot contoh animasi stick figure — video segera ditambahkan.",
