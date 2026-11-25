@@ -14,7 +14,7 @@
  *  No broken wa.me link is ever generated.
  */
 
-export const WHATSAPP_NUMBER = "628XXXXXXXXXX";
+export const WHATSAPP_NUMBER = "6287890391191";
 
 export const WHATSAPP_DEFAULT_MESSAGE =
   "Halo KowiVerse! Saya tertarik dengan produk Animation Prompts-nya. Boleh minta informasi lebih lanjut mengenai Kowi Bronze dan Kowi Metal?";

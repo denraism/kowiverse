@@ -7,8 +7,8 @@
  *     "unavailable" state and never redirects.
  */
 
-export const KOWI_BRONZE_URL = "";
-export const KOWI_METAL_URL = "";
+export const KOWI_BRONZE_URL = "https://lynk.id/kowiverse";
+export const KOWI_METAL_URL = "https://lynk.id/kowiverse";
 
 /**
  * Only links on these domains are treated as valid purchase links
