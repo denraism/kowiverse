@@ -12,9 +12,11 @@ type VideoCardProps = {
   video: ShowcaseVideo;
   index: number;
   onOpen: (video: ShowcaseVideo, trigger: HTMLElement) => void;
+  /** false for the repeated copies used by the endless carousel (kept out of the Tab order). */
+  focusable?: boolean;
 };
 
-export function VideoCard({ video, index, onOpen }: VideoCardProps) {
+export function VideoCard({ video, index, onOpen, focusable = true }: VideoCardProps) {
   const [imgFailed, setImgFailed] = useState(false);
   const r = aspectRatioValue(video.aspectRatio);
   const isPlaceholder = !video.videoUrl.trim();
@@ -28,6 +30,7 @@ export function VideoCard({ video, index, onOpen }: VideoCardProps) {
     >
       <button
         type="button"
+        tabIndex={focusable ? undefined : -1}
         onClick={(e) => onOpen(video, e.currentTarget)}
         aria-label={
           isPlaceholder

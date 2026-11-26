@@ -21,8 +21,7 @@
  *   - `thumbnail: ""` → a designed abstract placeholder is drawn instead.
  *   - Remove an entry to remove the video. Order here = order on the website.
  *
- *  NOTE: The entries below are PLACEHOLDER SLOTS, not real KowiVerse projects.
- *  Replace them with your own animation examples.
+ *  The showcase scrolls endlessly: the list repeats, so a few videos are enough.
  */
 
 export type AspectRatio = "9:16" | "16:9" | "1:1";
@@ -75,39 +74,30 @@ export const videos: ShowcaseVideo[] = [
     aspectRatio: "9:16",
   },
   {
-    id: "example-01",
-    title: "Example Animation 01",
-    description: "Slot contoh animasi stick figure — video segera ditambahkan.",
+    id: "mimpi-lila",
+    title: "Lila dan Mimpi yang Jadi Nyata",
+    description: "Setiap mimpi Lila mulai muncul di dunia nyata — ditemani kucing yang bisa bicara, ia mencari tahu sebabnya.",
+    category: "Story Animation",
+    thumbnail: "/videos/thumbnails/mimpi-lila.jpg",
+    videoUrl: "/videos/mimpi-lila.mp4",
+    aspectRatio: "9:16",
+  },
+  {
+    id: "pulau-raka-naya",
+    title: "Raka, Naya, dan Pulau Misterius",
+    description: "Raka dan Naya terdampar di pulau misterius yang bisa bergetar — dan menemukan batu besar dengan tanda aneh.",
+    category: "Story Animation",
+    thumbnail: "/videos/thumbnails/pulau-raka-naya.jpg",
+    videoUrl: "/videos/pulau-raka-naya.mp4",
+    aspectRatio: "9:16",
+  },
+  {
+    id: "uang-dari-langit",
+    title: "Bagaimana Jika Uang Turun dari Langit?",
+    description: "Semua orang mendadak kaya — sampai harga-harga ikut melambung. Animasi stick figure tentang nilai uang.",
     category: "Stick Figure Animation",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "9:16",
-  },
-  {
-    id: "example-03",
-    title: "Example Animation 03",
-    description: "Slot contoh character animation — video segera ditambahkan.",
-    category: "Character Animation",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "1:1",
-  },
-  {
-    id: "example-04",
-    title: "Example Animation 04",
-    description: "Slot contoh cinematic animation — video segera ditambahkan.",
-    category: "Cinematic Animation",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "9:16",
-  },
-  {
-    id: "example-05",
-    title: "Example Animation 05",
-    description: "Slot contoh creative experiment — video segera ditambahkan.",
-    category: "Creative Experiments",
-    thumbnail: "",
-    videoUrl: "",
-    aspectRatio: "9:16",
+    thumbnail: "/videos/thumbnails/uang-dari-langit.jpg",
+    videoUrl: "/videos/uang-dari-langit.mp4",
+    aspectRatio: "16:9",
   },
 ];

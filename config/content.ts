@@ -22,7 +22,16 @@ export const heroContent = {
   secondaryCta: { label: "Lihat Paket", href: "#pricing" },
   /** Short reassurance points under the buttons. Keep them 100% true. */
   assurances: ["Ramah untuk pemula", "Pembelian aman via Lynk.id", "Tanya langsung via WhatsApp"],
-  /** Small decorative prompt shown in the hero visual (illustration only). */
+  /**
+   * Video shown on the right of the hero (plays silently on loop).
+   * Set `src: ""` to bring back the old animated "kowiverse / prompt" illustration.
+   */
+  video: {
+    src: "/videos/uang-dari-langit.mp4",
+    poster: "/videos/thumbnails/uang-dari-langit.jpg",
+    title: "Bagaimana Jika Uang Turun dari Langit?",
+  },
+  /** Small decorative prompt shown in the old hero illustration (used when video.src is ""). */
   visualPrompt:
     "a small orange ball bouncing across a quiet night city, squash & stretch, soft cinematic light",
 };

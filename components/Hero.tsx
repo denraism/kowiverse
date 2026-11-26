@@ -5,6 +5,7 @@ import { ArrowDown, ArrowRight, Check } from "lucide-react";
 import { heroContent } from "@/config/content";
 import { buttonStyles, cn } from "@/lib/ui";
 import { Eyebrow } from "./SectionHeading";
+import { HeroVideo } from "./HeroVideo";
 import { HeroVisual } from "./HeroVisual";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -96,7 +97,11 @@ export function Hero() {
             transition={{ duration: 1.1, delay: 0.35, ease }}
             className="mx-auto w-full max-w-xl lg:max-w-none"
           >
-            <HeroVisual prompt={heroContent.visualPrompt} />
+            {heroContent.video.src ? (
+              <HeroVideo {...heroContent.video} />
+            ) : (
+              <HeroVisual prompt={heroContent.visualPrompt} />
+            )}
           </m.div>
         </div>
       </div>
