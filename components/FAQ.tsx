@@ -3,12 +3,16 @@
 import { useId, useState } from "react";
 import { Plus } from "lucide-react";
 import { faqContent } from "@/config/content";
-import { faqs } from "@/config/faq";
+import { faqs as allFaqs } from "@/config/faq";
+import { SHOW_KOWI_BRONZE } from "@/config/pricing";
 import { buildWhatsAppUrl } from "@/lib/links";
 import { cn } from "@/lib/ui";
 import { WhatsAppIcon } from "./icons/BrandIcons";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+
+// The Bronze-vs-Metal question is hidden while Kowi Bronze is hidden.
+const faqs = allFaqs.filter((f) => SHOW_KOWI_BRONZE || !f.bronzeOnly);
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

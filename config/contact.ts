@@ -14,10 +14,13 @@
  *  No broken wa.me link is ever generated.
  */
 
+import { SHOW_KOWI_BRONZE } from "./pricing";
+
 export const WHATSAPP_NUMBER = "6287890391191";
 
-export const WHATSAPP_DEFAULT_MESSAGE =
-  "Halo KowiVerse! Saya tertarik dengan produk Animation Prompts-nya. Boleh minta informasi lebih lanjut mengenai Kowi Bronze dan Kowi Metal?";
+export const WHATSAPP_DEFAULT_MESSAGE = `Halo KowiVerse! Saya tertarik dengan produk Animation Prompts-nya. Boleh minta informasi lebih lanjut mengenai ${
+  SHOW_KOWI_BRONZE ? "Kowi Bronze dan Kowi Metal" : "Kowi Metal"
+}?`;
 
 export const whatsappButton = {
   /** Tooltip shown on hover (desktop only). */

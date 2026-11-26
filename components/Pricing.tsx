@@ -1,6 +1,6 @@
 import { ArrowUpRight, Check, Lock, Download, ShieldCheck, Sparkles } from "lucide-react";
 import { pricingContent } from "@/config/content";
-import { pricingPackages, type PricingPackage } from "@/config/pricing";
+import { SHOW_KOWI_BRONZE, pricingPackages, type PricingPackage } from "@/config/pricing";
 import { buildWhatsAppUrl, getValidPurchaseUrl } from "@/lib/links";
 import { buttonStyles, cn } from "@/lib/ui";
 import { WhatsAppIcon } from "./icons/BrandIcons";
@@ -52,7 +52,16 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
       <div className="mt-8 border-y border-line py-6">
         {hasPrice ? (
           <p className="flex flex-wrap items-baseline gap-x-2">
-            <span className="text-4xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">{pkg.price}</span>
+            {pkg.originalPrice.trim() ? (
+              <span className="text-lg font-medium text-subtle line-through decoration-orange/70 decoration-2 sm:text-xl">
+                <span className="sr-only">Harga normal </span>
+                {pkg.originalPrice}
+              </span>
+            ) : null}
+            <span className="text-4xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">
+              {pkg.originalPrice.trim() ? <span className="sr-only">Harga sekarang </span> : null}
+              {pkg.price}
+            </span>
             {pkg.priceNote ? <span className="text-sm text-muted">{pkg.priceNote}</span> : null}
           </p>
         ) : (
@@ -126,7 +135,8 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
 
 export function Pricing() {
   const whatsappUrl = buildWhatsAppUrl();
-  // Exactly two packages — enforced by the tuple type in config/pricing.ts
+  // Exactly two packages — enforced by the tuple type in config/pricing.ts.
+  // Bronze can be hidden with SHOW_KOWI_BRONZE; Metal is then shown on its own, centered.
   const [bronze, metal] = pricingPackages;
 
   return (
@@ -141,14 +151,22 @@ export function Pricing() {
           align="center"
         />
 
-        <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:mt-16 md:grid-cols-2 md:gap-6 lg:gap-8">
-          <Reveal className="h-full">
-            <PricingCard pkg={bronze} />
-          </Reveal>
-          <Reveal className="h-full" delay={0.1}>
-            <PricingCard pkg={metal} />
-          </Reveal>
-        </div>
+        {SHOW_KOWI_BRONZE ? (
+          <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:mt-16 md:grid-cols-2 md:gap-6 lg:gap-8">
+            <Reveal className="h-full">
+              <PricingCard pkg={bronze} />
+            </Reveal>
+            <Reveal className="h-full" delay={0.1}>
+              <PricingCard pkg={metal} />
+            </Reveal>
+          </div>
+        ) : (
+          <div className="mx-auto mt-14 max-w-xl md:mt-16">
+            <Reveal className="h-full">
+              <PricingCard pkg={metal} />
+            </Reveal>
+          </div>
+        )}
 
         <Reveal className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-6 text-sm text-muted md:mt-12">
           <ul className="flex flex-col items-start gap-x-8 gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">

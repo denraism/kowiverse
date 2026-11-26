@@ -6,7 +6,8 @@
  *  Use a blank line ("\n\n") inside an answer to start a new paragraph.
  */
 
-export const faqs: { question: string; answer: string }[] = [
+/** `bronzeOnly: true` → hidden while Kowi Bronze is hidden (SHOW_KOWI_BRONZE in config/pricing.ts). */
+export const faqs: { question: string; answer: string; bronzeOnly?: boolean }[] = [
   {
     question: "Apa itu KowiVerse?",
     answer:
@@ -19,6 +20,7 @@ export const faqs: { question: string; answer: string }[] = [
   },
   {
     question: "Apa bedanya Kowi Bronze dan Kowi Metal?",
+    bronzeOnly: true,
     answer:
       "Kowi Bronze adalah paket entry-level dengan essential resources — cocok kalau kamu baru mulai. Kowi Metal adalah paket premium dengan resources yang lebih lengkap untuk kamu yang ingin melangkah lebih jauh.\n\nDetail isi masing-masing paket bisa kamu lihat di bagian Pricing. Masih ragu? Tanyakan langsung ke kami lewat WhatsApp.",
   },
