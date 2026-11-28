@@ -10,7 +10,7 @@ import { themeColors } from "./theme";
 
 export const site = {
   name: "KowiVerse",
-  tagline: "Animation Prompts. Unlimited Possibilities.",
+  tagline: "From idea to animated short.",
   category: "Animation Prompter",
 
   /**
@@ -33,9 +33,9 @@ export const site = {
   },
 
   seo: {
-    title: "KowiVerse — Animation Prompts for Creative Minds",
+    title: "KowiVerse — AI Animation Prompts & Workflow",
     description:
-      "Explore KowiVerse, temukan inspirasi animasi, lihat contoh karya, dan pilih paket animation prompts yang sesuai dengan kebutuhan kreatifmu.",
+      "Prompt siap salin dan alur kerja langkah demi langkah untuk membuat animasi pendek dengan AI — dari naskah sampai video. Dirancang untuk pemula.",
     keywords: [
       "animation prompts",
       "AI animation prompts",

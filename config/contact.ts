@@ -18,13 +18,13 @@ import { SHOW_KOWI_BRONZE } from "./pricing";
 
 export const WHATSAPP_NUMBER = "6287890391191";
 
-export const WHATSAPP_DEFAULT_MESSAGE = `Halo KowiVerse! Saya tertarik dengan produk Animation Prompts-nya. Boleh minta informasi lebih lanjut mengenai ${
+export const WHATSAPP_DEFAULT_MESSAGE = `Halo KowiVerse! Saya tertarik dengan ${
   SHOW_KOWI_BRONZE ? "Kowi Bronze dan Kowi Metal" : "Kowi Metal"
-}?`;
+}. Boleh minta info lebih lanjut?`;
 
 export const whatsappButton = {
   /** Tooltip shown on hover (desktop only). */
-  tooltip: "Chat with us on WhatsApp",
+  tooltip: "Chat on WhatsApp",
   /** Accessible label for screen readers. */
   ariaLabel: "Chat dengan KowiVerse di WhatsApp (membuka tab baru)",
   /** Tooltip shown in development when the number isn't configured yet. */

@@ -12,16 +12,16 @@
  */
 
 export const heroContent = {
-  label: "KowiVerse — Animation Prompt Collection",
-  headline: "Turn Your Imagination Into Animation.",
-  /** Words in the headline that get the orange accent. */
-  highlight: "Animation.",
+  label: "AI animation prompts & workflow",
+  headline: "Turn your story into an animated short.",
+  /** Words in the headline that get the emerald accent (must appear in `headline`). */
+  highlight: "animated short.",
   description:
-    "Punya ide animasi keren tapi bingung mulai dari mana? KowiVerse hadir dengan kumpulan animation prompts dan creative resources yang membantu kamu mengubah ide menjadi karya visual yang lebih menarik.",
-  primaryCta: { label: "Explore Examples", href: "#showcase" },
-  secondaryCta: { label: "Lihat Paket", href: "#pricing" },
+    "Prompt siap salin dan alur kerja yang jelas untuk membuat animasi pendek dengan AI — dari naskah sampai video. Dirancang untuk pemula.",
+  primaryCta: { label: "See Examples", href: "#showcase" },
+  secondaryCta: { label: "View Pricing", href: "#pricing" },
   /** Short reassurance points under the buttons. Keep them 100% true. */
-  assurances: ["Ramah untuk pemula", "Pembelian aman via Lynk.id", "Tanya langsung via WhatsApp"],
+  assurances: ["Tanpa pengalaman animasi", "Pembayaran via Lynk.id", "Bantuan lewat WhatsApp"],
   /**
    * Video shown on the right of the hero (plays silently on loop).
    * Set `src: ""` to bring back the old animated "kowiverse / prompt" illustration.
@@ -37,137 +37,137 @@ export const heroContent = {
 };
 
 export const showcaseContent = {
-  label: "Creative Showcase",
-  title: "See What You Can Create.",
+  label: "Showcase",
+  title: "What you can make.",
   description:
-    "Setiap ide punya potensi untuk jadi sesuatu yang luar biasa. Explore berbagai contoh animasi dan temukan inspirasi untuk project berikutnya.",
-  allFilterLabel: "Semua",
-  comingSoonLabel: "Segera Hadir",
+    "Contoh animasi pendek, dari ide cerita sampai video jadi. Pilih satu untuk memutarnya.",
+  allFilterLabel: "All",
+  comingSoonLabel: "Coming soon",
   comingSoonModalText:
-    "Video contoh untuk slot ini sedang disiapkan dan akan segera ditambahkan. Pantau terus KowiVerse, ya!",
+    "Video untuk slot ini sedang disiapkan.",
 };
 
 export const featuresContent = {
   label: "Features",
-  title: "Everything You Need to Create.",
+  title: "Everything in one workflow.",
   description:
-    "Semua yang kamu butuhkan untuk mulai mengeksplorasi animation prompting — dari referensi prompt sampai contoh visual.",
+    "Yang kamu perlukan untuk membuat animasi pendek dengan AI, tanpa menyusun alur kerja dari nol.",
   items: [
     {
       icon: "prompts",
-      title: "Ready-to-Use Prompts",
+      title: "Ready-to-copy prompts",
       description:
-        "Mulai berkarya tanpa harus selalu memikirkan prompt dari nol. Temukan referensi prompt yang bisa kamu eksplorasi.",
+        "Prompt untuk menulis naskah dan membagi adegan. Salin, sesuaikan, lalu jalankan.",
     },
     {
       icon: "inspiration",
-      title: "Creative Inspiration",
+      title: "Creative direction",
       description:
-        "Temukan berbagai ide, gaya visual, dan inspirasi baru untuk mengembangkan kreativitasmu.",
+        "Ide, gaya visual, dan referensi untuk karya berikutnya.",
     },
     {
       icon: "examples",
-      title: "Visual Examples",
+      title: "Real examples",
       description:
-        "Lihat langsung contoh hasil animasi agar kamu punya gambaran tentang kemungkinan yang bisa dieksplorasi.",
+        "Lihat hasil jadinya dulu, supaya kamu tahu apa yang bisa dibuat sebelum mulai.",
     },
     {
       icon: "workflow",
-      title: "Simple Workflow",
+      title: "Clear steps",
       description:
-        "Dirancang agar lebih mudah dipahami dan digunakan, bahkan jika kamu baru mulai mengenal dunia animation prompting.",
+        "Dari menyiapkan alat sampai video siap ditinjau. Tidak perlu pengalaman animasi.",
     },
   ] as const,
 };
 
 export const howItWorksContent = {
-  label: "How It Works",
-  title: "Your Creative Journey Starts Here.",
-  description: "Tiga langkah sederhana dari ide di kepala sampai karya animasi pertamamu.",
+  label: "How it works",
+  title: "Three steps to your first short.",
+  description: "Dari pembelian sampai karya pertamamu.",
   steps: [
     {
       number: "01",
-      title: "Choose Your Package",
+      title: "Choose a package",
       description:
-        "Pilih paket KowiVerse yang paling sesuai dengan kebutuhan dan perjalanan kreatifmu.",
+        "Pilih paket yang sesuai dengan kebutuhanmu.",
     },
     {
       number: "02",
-      title: "Get Your Resources",
+      title: "Get access",
       description:
-        "Lakukan pembelian melalui Lynk.id dan ikuti petunjuk untuk mendapatkan produk digitalmu.",
+        "Bayar lewat Lynk.id, lalu ikuti petunjuk akses yang diberikan.",
     },
     {
       number: "03",
-      title: "Start Creating",
+      title: "Start creating",
       description:
-        "Mulai eksplorasi, kembangkan ide, dan ciptakan karya animasi versimu sendiri.",
+        "Ikuti panduannya dan buat animasi versimu sendiri.",
     },
   ],
 };
 
 export const pricingContent = {
   label: "Pricing",
-  title: "Choose Your Creative Level.",
+  title: "Simple pricing.",
   description:
-    "Temukan paket yang sesuai dengan kebutuhanmu. Mulai dari essential resources hingga pilihan yang lebih lengkap.",
+    "Bayar lewat Lynk.id, lalu dapatkan prompt, panduan, dan alur kerja lengkapnya.",
   recommendedLabel: "Recommended",
-  priceFallback: "Segera Diumumkan",
-  priceFallbackNote: "Harga akan diumumkan segera",
+  priceFallback: "Segera diumumkan",
+  priceFallbackNote: "Harga akan segera diumumkan.",
   fitLabel: "Cocok untuk",
-  featuresLabel: "Yang kamu dapatkan",
+  featuresLabel: "Isi paket",
   unavailableNote: "Link pembelian sedang disiapkan.",
-  checkoutNote: "Pembelian & pembayaran diproses melalui Lynk.id",
+  checkoutNote: "Pembayaran diproses oleh Lynk.id.",
   trustPoints: [
-    "Pembayaran diproses langsung oleh Lynk.id",
-    "Produk digital — ikuti petunjuk akses setelah pembelian",
+    "Pembayaran aman lewat Lynk.id",
+    "Produk digital — petunjuk akses tersedia setelah pembayaran",
   ],
-  questionPrompt: "Masih bingung pilih paket yang mana?",
+  questionPrompt: "Ada pertanyaan sebelum membeli?",
   questionCta: "Tanya via WhatsApp",
 };
 
 export const testimonialsContent = {
   label: "Testimonials",
-  title: "Creators Speak.",
-  description: "Pengalaman dan feedback dari para pengguna KowiVerse.",
+  title: "From our creators.",
+  description: "Pengalaman nyata dari pengguna KowiVerse.",
   /**
    * When there are no testimonials yet (config/testimonials.ts is empty):
    *  - true  → show a small, honest "share your story" invitation
    *  - false → hide the entire Testimonials section
    */
   showEmptyState: true,
-  emptyTitle: "Cerita kreatifmu bisa tampil di sini.",
+  emptyTitle: "Ceritamu bisa tampil di sini.",
   emptyDescription:
-    "KowiVerse hanya menampilkan testimoni asli dari pengguna. Sudah mencoba KowiVerse? Kami senang sekali kalau kamu mau berbagi pengalaman.",
-  emptyCta: "Bagikan Pengalamanmu",
+    "Kami hanya menampilkan testimoni asli. Sudah mencoba KowiVerse? Ceritakan pengalamanmu.",
+  emptyCta: "Share Your Story",
   /** Pre-filled WhatsApp message for the "share your story" button. */
   shareMessage: "Halo KowiVerse! Saya ingin berbagi pengalaman setelah mencoba KowiVerse.",
 };
 
 export const faqContent = {
   label: "FAQ",
-  title: "Got Questions?",
+  title: "Questions, answered.",
   description:
-    "Temukan jawaban sebelum kamu memulai perjalanan kreatif bersama KowiVerse.",
-  moreQuestions: "Pertanyaanmu belum terjawab?",
-  moreQuestionsCta: "Chat kami di WhatsApp",
+    "Yang paling sering ditanyakan sebelum membeli.",
+  moreQuestions: "Masih ada pertanyaan?",
+  moreQuestionsCta: "Chat on WhatsApp",
 };
 
 export const finalCtaContent = {
-  headline: "Your Ideas Deserve to Be Created.",
+  headline: "Ready to animate your first story?",
   description:
-    "Jangan biarkan ide kreatifmu berhenti di pikiran. Explore KowiVerse dan mulai perjalanan animasimu sekarang.",
-  cta: { label: "Explore KowiVerse", href: "#pricing" },
+    "Prompt, panduan, dan alur kerja lengkap — semua dalam satu paket.",
+  cta: { label: "View Pricing", href: "#pricing" },
 };
 
 export const footerContent = {
   description:
-    "KowiVerse adalah creative resource platform untuk membantu kamu mengeksplorasi dunia animation prompting, menemukan inspirasi, dan mengembangkan ide menjadi karya visual.",
-  navTitle: "Navigasi",
+    "KowiVerse membantu kreator membuat animasi pendek dengan AI — lewat prompt siap salin dan alur kerja yang jelas.",
+  navTitle: "Navigate",
   socialTitle: "Social",
-  contactTitle: "Kontak",
-  contactFallback: "Informasi kontak akan segera diperbarui.",
-  socialFallback: "Akun social media segera hadir.",
+  contactTitle: "Contact",
+  contactFallback: "Kontak akan segera tersedia.",
+  socialFallback: "Akun media sosial segera hadir.",
   rights: "All rights reserved.",
-  bottomNote: "Animation Prompter · Made for Indonesian creators",
+  bottomNote: "Made for Indonesian creators",
 };

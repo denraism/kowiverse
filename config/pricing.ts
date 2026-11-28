@@ -76,11 +76,11 @@ export const pricingPackages: [PricingPackage, PricingPackage] = [
   {
     id: "metal",
     name: "Kowi Metal",
-    label: "Level Up Your Creativity",
+    label: "Script-to-video workflow",
     description:
-      "Pelajari cara membuat naskah animasi berdurasi 1–2 menit menggunakan Google AI Studio, lalu gunakan Claude Code dan skill animasi untuk mengembangkan cerita menjadi video. Paket ini dirancang untuk pemula, dengan prompt siap salin dan tahapan yang jelas.",
+      "Tulis naskah animasi 1–2 menit dengan Google AI Studio, lalu ubah jadi video dengan Claude Code dan skill animasi. Dibuat untuk pemula, dengan prompt siap salin dan tahapan yang jelas.",
     bestFor:
-      "Kamu yang ingin bereksperimen membuat animasi AI untuk konten pendek tanpa harus merancang alur kerja dari nol.",
+      "Kreator yang ingin membuat animasi AI untuk konten pendek tanpa menyusun alur kerja dari nol.",
     price: "Rp30.000",
     originalPrice: "Rp50.000",
     priceNote: "harga promo",
