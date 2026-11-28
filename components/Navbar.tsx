@@ -14,6 +14,24 @@ export function Navbar() {
   const [active, setActive] = useState<string>("#home");
   const toggleRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  // one indicator that slides between links (transform only)
+  const [indicator, setIndicator] = useState<{ x: number; w: number } | null>(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const place = () => {
+      const link = list.querySelector<HTMLAnchorElement>(`a[href="${active}"]`);
+      if (!link || !link.offsetWidth) return setIndicator(null);
+      const inset = 14; // matches px-3.5
+      setIndicator({ x: link.offsetLeft + inset, w: link.offsetWidth - inset * 2 });
+    };
+    place();
+    const ro = new ResizeObserver(place);
+    ro.observe(list);
+    return () => ro.disconnect();
+  }, [active]);
 
   // Border/blur appears after scrolling a little
   useEffect(() => {
@@ -82,9 +100,9 @@ export function Navbar() {
     <>
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-200",
         scrolled || open
-          ? "border-b border-line/80 bg-bg/80 backdrop-blur-xl"
+          ? "liquid-bar border-b border-line"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -93,7 +111,7 @@ export function Navbar() {
           <Logo />
         </a>
 
-        <ul className="hidden items-center gap-1 lg:flex">
+        <ul ref={listRef} className="relative hidden items-center gap-1 lg:flex">
           {navItems.map((item) => {
             const isActive = active === item.href;
             return (
@@ -102,35 +120,37 @@ export function Navbar() {
                   href={item.href}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-300",
-                    isActive ? "text-fg" : "text-fg/75 hover:text-orange",
+                    "relative rounded-md px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                    isActive ? "text-fg" : "text-muted hover:text-fg",
                   )}
                 >
                   {item.label}
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "absolute inset-x-3.5 -bottom-0.5 h-px origin-left bg-orange transition-transform duration-500 ease-out-expo",
-                      isActive ? "scale-x-100" : "scale-x-0",
-                    )}
-                  />
                 </a>
               </li>
             );
           })}
+          <li aria-hidden="true" className="pointer-events-none absolute -bottom-0.5 left-0">
+            <span
+              className="block h-px w-px origin-left bg-accent-2 transition-[transform,opacity] duration-500 ease-(--ease-liquid)"
+              style={{
+                transform: `translateX(${indicator?.x ?? 0}px) scaleX(${indicator?.w ?? 0})`,
+                opacity: indicator ? 1 : 0,
+              }}
+            />
+          </li>
         </ul>
 
         <div className="flex items-center gap-2">
           <div className="hidden sm:block">
             <a href={navCta.href} className={cn(buttonStyles.primary, "min-h-10 whitespace-nowrap px-5 text-sm")} data-wa-avoid>
               {navCta.label}
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
+              <ArrowUpRight className="size-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
             </a>
           </div>
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-line-2 bg-card/40 text-fg transition-colors hover:border-orange/60 hover:bg-card lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-(--radius-control) border border-line bg-card text-fg transition-colors duration-200 hover:border-line-2 lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? "Tutup menu" : "Buka menu"}
@@ -171,7 +191,7 @@ export function Navbar() {
                       aria-current={active === item.href ? "true" : undefined}
                       className={cn(
                         "flex items-center justify-between py-4 text-2xl font-semibold tracking-[-0.03em] transition-colors",
-                        active === item.href ? "text-orange" : "text-fg hover:text-orange",
+                        active === item.href ? "text-accent" : "text-fg hover:text-accent",
                       )}
                     >
                       {item.label}

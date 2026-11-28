@@ -1,6 +1,6 @@
 import { ArrowUpRight, Check, Lock, Download, ShieldCheck, Sparkles } from "lucide-react";
 import { pricingContent } from "@/config/content";
-import { pricingPackages, type PricingPackage } from "@/config/pricing";
+import { SHOW_KOWI_BRONZE, pricingPackages, type PricingPackage } from "@/config/pricing";
 import { buildWhatsAppUrl, getValidPurchaseUrl } from "@/lib/links";
 import { buttonStyles, cn } from "@/lib/ui";
 import { WhatsAppIcon } from "./icons/BrandIcons";
@@ -17,9 +17,9 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
     <article
       aria-labelledby={`plan-${pkg.id}`}
       className={cn(
-        "relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border p-7 sm:p-9",
+        "relative flex h-full flex-col overflow-hidden rounded-(--radius-panel) border p-7 sm:p-9",
         premium
-          ? "surface-metal border-orange/50 shadow-metal ring-1 ring-orchid/15"
+          ? "surface-metal border-line-2 shadow-metal"
           : "surface-bronze border-line",
       )}
     >
@@ -28,23 +28,23 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
         aria-hidden="true"
         className={cn(
           "absolute inset-x-8 top-0 h-px",
-          premium ? "bg-gradient-to-r from-transparent via-orange to-transparent" : "bg-gradient-to-r from-transparent via-bronze/60 to-transparent",
+          premium ? "bg-gradient-to-r from-transparent via-accent/70 to-transparent" : "bg-gradient-to-r from-transparent via-bronze/60 to-transparent",
         )}
       />
 
       <div className="flex min-h-7 items-center justify-between gap-4">
-        <p className={cn("font-mono text-[0.6875rem] font-medium uppercase tracking-[0.2em]", premium ? "text-orange-soft" : "text-bronze")}>
+        <p className={cn("text-sm font-medium", premium ? "text-accent-2" : "text-bronze")}>
           {pkg.label}
         </p>
-        {premium ? (
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-orange px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-ink shadow-cta">
+        {premium && SHOW_KOWI_BRONZE ? (
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-accent/40 bg-deep/60 px-2.5 py-1 text-xs font-medium text-mint">
             <Sparkles className="size-3" aria-hidden="true" />
             {pricingContent.recommendedLabel}
           </span>
         ) : null}
       </div>
 
-      <h3 id={`plan-${pkg.id}`} className="mt-5 text-[1.75rem] font-semibold tracking-[-0.035em] sm:text-[2rem]">
+      <h3 id={`plan-${pkg.id}`} className="mt-5 text-[1.625rem] font-semibold tracking-[-0.03em] sm:text-[1.875rem]">
         {pkg.name}
       </h3>
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{pkg.description}</p>
@@ -52,7 +52,16 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
       <div className="mt-8 border-y border-line py-6">
         {hasPrice ? (
           <p className="flex flex-wrap items-baseline gap-x-2">
-            <span className="text-4xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">{pkg.price}</span>
+            {pkg.originalPrice.trim() ? (
+              <span className="text-lg font-medium text-subtle line-through decoration-accent/70 decoration-2 sm:text-xl">
+                <span className="sr-only">Harga normal </span>
+                {pkg.originalPrice}
+              </span>
+            ) : null}
+            <span className="text-4xl font-semibold tracking-[-0.035em] sm:text-[2.5rem]">
+              {pkg.originalPrice.trim() ? <span className="sr-only">Harga sekarang </span> : null}
+              {pkg.price}
+            </span>
             {pkg.priceNote ? <span className="text-sm text-muted">{pkg.priceNote}</span> : null}
           </p>
         ) : (
@@ -76,7 +85,7 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
                 <span
                   className={cn(
                     "mt-px flex size-5 shrink-0 items-center justify-center rounded-full",
-                    premium ? "bg-orange text-ink" : "bg-bronze/15 text-bronze ring-1 ring-bronze/35",
+                    premium ? "bg-deep text-accent-2 ring-1 ring-accent/30" : "bg-bronze/15 text-bronze ring-1 ring-bronze/35",
                   )}
                 >
                   <Check className="size-3" strokeWidth={3} aria-hidden="true" />
@@ -99,7 +108,7 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
             className={cn(premium ? buttonStyles.primary : buttonStyles.secondary, "min-h-13 w-full", !premium && "hover:border-bronze/70")}
           >
             {pkg.ctaLabel}
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
+            <ArrowUpRight className="size-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
           </a>
         ) : (
           <>
@@ -124,60 +133,101 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
   );
 }
 
+/** How buying works, trust notes and the WhatsApp question — shown beside the package. */
+function BuyingInfo({ whatsappUrl }: { whatsappUrl: string | null }) {
+  return (
+    <div>
+      <h3 className="text-sm font-medium text-fg">{pricingContent.stepsTitle}</h3>
+      <ol className="mt-4 border-t border-line">
+        {pricingContent.steps.map((step, i) => (
+          <li key={step.title} className="grid grid-cols-[2rem_1fr] gap-x-3 border-b border-line py-4">
+            <span className="font-mono text-sm text-accent-2">0{i + 1}</span>
+            <p className="text-[0.9375rem] leading-relaxed">
+              <span className="font-medium text-fg">{step.title}</span>
+              <span className="block text-muted">{step.text}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+
+      <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+        {pricingContent.trustPoints.map((t, i) => {
+          const Icon = i === 0 ? ShieldCheck : Download;
+          return (
+            <li key={t} className="flex items-center gap-2">
+              <Icon className="size-4 shrink-0 text-accent" aria-hidden="true" />
+              {t}
+            </li>
+          );
+        })}
+      </ul>
+
+      {whatsappUrl ? (
+        <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
+          {pricingContent.questionPrompt}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-wa-avoid
+            className="inline-flex min-h-9 items-center gap-1.5 font-medium text-fg underline decoration-whatsapp/60 underline-offset-4 transition-colors duration-200 hover:text-whatsapp"
+          >
+            <WhatsAppIcon className="size-4 text-whatsapp" />
+            {pricingContent.questionCta}
+          </a>
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
 export function Pricing() {
   const whatsappUrl = buildWhatsAppUrl();
-  // Exactly two packages — enforced by the tuple type in config/pricing.ts
+  // Exactly two packages — enforced by the tuple type in config/pricing.ts.
+  // Bronze can be hidden with SHOW_KOWI_BRONZE; Metal then sits beside the buying steps.
   const [bronze, metal] = pricingPackages;
 
   return (
-    <section id="pricing" aria-labelledby="pricing-title" className="section-y relative overflow-hidden border-t border-line/60 bg-bg">
+    <section id="pricing" aria-labelledby="pricing-title" className="section-y relative overflow-hidden border-t border-line bg-bg-2">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-glow-top" />
       <div className="container-page relative">
-        <SectionHeading
-          id="pricing-title"
-          label={pricingContent.label}
-          title={pricingContent.title}
-          description={pricingContent.description}
-          align="center"
-        />
-
-        <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:mt-16 md:grid-cols-2 md:gap-6 lg:gap-8">
-          <Reveal className="h-full">
-            <PricingCard pkg={bronze} />
-          </Reveal>
-          <Reveal className="h-full" delay={0.1}>
-            <PricingCard pkg={metal} />
-          </Reveal>
-        </div>
-
-        <Reveal className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-6 text-sm text-muted md:mt-12">
-          <ul className="flex flex-col items-start gap-x-8 gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center">
-            {pricingContent.trustPoints.map((t, i) => {
-              const Icon = i === 0 ? ShieldCheck : Download;
-              return (
-                <li key={t} className="flex items-start gap-2 sm:items-center">
-                  <Icon className="mt-0.5 size-4 shrink-0 text-orange sm:mt-0" aria-hidden="true" />
-                  {t}
-                </li>
-              );
-            })}
-          </ul>
-          {whatsappUrl ? (
-            <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center">
-              {pricingContent.questionPrompt}
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-wa-avoid
-                className="inline-flex items-center gap-1.5 font-medium text-fg underline decoration-whatsapp/60 underline-offset-4 transition-colors hover:text-whatsapp"
-              >
-                <WhatsAppIcon className="size-4 text-whatsapp" />
-                {pricingContent.questionCta}
-              </a>
-            </p>
-          ) : null}
-        </Reveal>
+        {SHOW_KOWI_BRONZE ? (
+          <>
+            <SectionHeading
+              id="pricing-title"
+              label={pricingContent.label}
+              title={pricingContent.title}
+              description={pricingContent.description}
+            />
+            <div className="mt-14 grid gap-5 md:mt-16 md:grid-cols-2 md:gap-6 lg:gap-8">
+              <Reveal className="h-full">
+                <PricingCard pkg={bronze} />
+              </Reveal>
+              <Reveal className="h-full" delay={0.1}>
+                <PricingCard pkg={metal} />
+              </Reveal>
+            </div>
+            <div className="mt-14 max-w-xl">
+              <BuyingInfo whatsappUrl={whatsappUrl} />
+            </div>
+          </>
+        ) : (
+          // phone/tablet order: heading → card → buying steps; desktop: card on the right
+          <div className="grid items-start gap-x-20 gap-y-12 lg:grid-cols-[1fr_minmax(0,32rem)] lg:grid-rows-[auto_1fr]">
+            <SectionHeading
+              id="pricing-title"
+              label={pricingContent.label}
+              title={pricingContent.title}
+              description={pricingContent.description}
+            />
+            <Reveal className="lg:col-start-2 lg:row-span-2 lg:row-start-1">
+              <PricingCard pkg={metal} />
+            </Reveal>
+            <Reveal delay={0.1} className="lg:col-start-1 lg:row-start-2">
+              <BuyingInfo whatsappUrl={whatsappUrl} />
+            </Reveal>
+          </div>
+        )}
       </div>
     </section>
   );

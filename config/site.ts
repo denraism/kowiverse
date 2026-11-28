@@ -10,7 +10,7 @@ import { themeColors } from "./theme";
 
 export const site = {
   name: "KowiVerse",
-  tagline: "Animation Prompts. Unlimited Possibilities.",
+  tagline: "From idea to animated short.",
   category: "Animation Prompter",
 
   /**
@@ -33,9 +33,9 @@ export const site = {
   },
 
   seo: {
-    title: "KowiVerse — Animation Prompts for Creative Minds",
+    title: "KowiVerse — AI Animation Prompts & Workflow",
     description:
-      "Explore KowiVerse, temukan inspirasi animasi, lihat contoh karya, dan pilih paket animation prompts yang sesuai dengan kebutuhan kreatifmu.",
+      "Prompt siap salin dan alur kerja langkah demi langkah untuk membuat animasi pendek dengan AI — dari naskah sampai video. Dirancang untuk pemula.",
     keywords: [
       "animation prompts",
       "AI animation prompts",
@@ -52,13 +52,10 @@ export const site = {
 
 /** Navigation items. `href` must match a section id on the page. */
 export const navItems = [
-  { label: "Home", href: "#home" },
   { label: "Showcase", href: "#showcase" },
+  { label: "Workflow", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
 ] as const;
 
 /** The "Get Started" button in the navbar. */

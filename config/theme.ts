@@ -9,13 +9,13 @@
  *  (app/icon.svg is a static file and also needs a manual edit.)
  */
 export const themeColors = {
-  bg: "#1B1230", // Deep Aubergine
-  bg2: "#25163A", // Dark Purple
-  card: "#302044", // Purple Surface
-  orange: "#E95420", // Ubuntu Orange
-  purple: "#77216F", // Ubuntu Purple
-  magenta: "#5E2750", // Dark Magenta
-  fg: "#FFFFFF",
-  muted: "#D6CCDF", // Soft Lavender
-  line: "#493557", // Muted Purple
+  bg: "#090A0B", // main background
+  bg2: "#101214", // secondary background
+  card: "#15191A", // surface
+  accent: "#10B981", // primary emerald
+  deep: "#10231C", // faint emerald tint
+  deep2: "#0C1512", // deepest tint
+  fg: "#F5F7F6",
+  muted: "#A1AAA5",
+  line: "#202223", // subtle border (rgba(255,255,255,0.08) flattened on bg)
 } as const;

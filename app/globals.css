@@ -1,53 +1,68 @@
 @import "tailwindcss";
 
 /* ─── Design tokens ───────────────────────────────────────────
-   KowiVerse × Ubuntu-inspired palette. This block is the single
-   source of truth for colours — components only use these tokens
-   (e.g. bg-card, text-muted, border-line, bg-orange).
-   Visual balance: ~65% aubergine backgrounds · ~25% purple
-   surfaces · ~10% orange accents (CTAs, active states, icons).
+   KowiVerse · Emerald. Raycast/Linear-inspired. This block is the single source of
+   truth — components only use these tokens (bg-card, text-muted,
+   border-line, bg-accent …). Near-black neutral surfaces, hairline
+   translucent borders, and emerald used only as an accent:
+   primary actions, active states and small highlights.
    ──────────────────────────────────────────────────────────── */
 @theme {
   /* Backgrounds & surfaces */
-  --color-bg: #1b1230;        /* Deep Aubergine — primary background */
-  --color-bg-2: #25163a;      /* Dark Purple — secondary background */
-  --color-card: #302044;      /* Purple Surface — cards */
-  --color-card-2: #3a2852;    /* derived: raised / hover surface */
+  --color-bg: #090a0b;        /* main background */
+  --color-bg-2: #101214;      /* secondary background (alternating bands) */
+  --color-card: #15191a;      /* surface */
+  --color-card-2: #1b2022;    /* derived: elevated surface / hover */
 
-  /* Borders */
-  --color-line: #493557;      /* Muted Purple — default border */
-  --color-line-2: #5c4670;    /* derived: stronger border (buttons, controls) */
+  /* Borders — translucent so they sit naturally on every surface */
+  --color-line: rgb(255 255 255 / 0.08);  /* subtle */
+  --color-line-2: rgb(52 211 153 / 0.25); /* hover / emphasis */
 
-  /* Accents */
-  --color-orange: #e95420;      /* Ubuntu Orange — CTAs, active states, icons */
-  --color-orange-2: #f06a3a;    /* derived: orange hover */
-  --color-orange-soft: #f47a4c; /* derived: small orange TEXT on purple surfaces (AA contrast) */
-  --color-purple: #77216f;      /* Ubuntu Purple — secondary accent */
-  --color-magenta: #5e2750;     /* Dark Magenta — supporting purple */
-  --color-orchid: #c77dbf;      /* derived: light purple for text/lines on dark */
-  --color-bronze: #c98a5e;      /* Kowi Bronze accent */
+  /* Emerald accents */
+  --color-accent: #10b981;      /* primary — CTAs, active states */
+  --color-accent-2: #34d399;    /* secondary — hover, small accent text */
+  --color-accent-soft: #34d399; /* emerald text on dark surfaces */
+  --color-mint: #6ee7b7;        /* soft — quiet highlights */
+  --color-deep: #10231c;        /* derived: faint emerald tint for selected chips/badges */
+  --color-deep-2: #0c1512;      /* derived: deepest tint for gradients */
+  --color-bronze: #c98a5e;      /* Kowi Bronze accent (package hidden for now) */
 
   /* Text */
-  --color-fg: #ffffff;          /* Primary text */
-  --color-muted: #d6ccdf;       /* Soft Lavender — secondary text */
-  --color-subtle: #a797b8;      /* derived: tertiary text / meta labels */
-  --color-ink: #1b1230;         /* text on orange (white on #E95420 fails WCAG AA) */
+  --color-fg: #f5f7f6;          /* primary */
+  --color-muted: #a1aaa5;       /* secondary */
+  --color-subtle: #7c8680;      /* muted — brief value #737d77, lifted slightly to pass AA (4.7:1) on cards */
+  --color-ink: #06100c;         /* text on emerald (≈ 7.6:1) */
+
+  /* Semantic */
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #fb7185;
+  --color-info: #67e8f9;
 
   /* Third-party — intentionally NOT themed */
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #1ebe5a;
 
-  /* Shadows */
-  --shadow-cta: 0 10px 30px -12px color-mix(in srgb, var(--color-orange) 70%, transparent);
-  --shadow-elevated: 0 40px 120px -40px rgb(9 4 20 / 0.85);
-  --shadow-metal: 0 40px 100px -50px color-mix(in srgb, var(--color-purple) 90%, transparent);
+  /* Radius — one scale everywhere */
+  --radius-control: 0.625rem; /* 10px — buttons, inputs, chips */
+  --radius-card: 0.875rem;    /* 14px — cards */
+  --radius-panel: 1rem;       /* 16px — large panels, media frames */
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  /* Shadows — kept quiet; depth comes from surfaces and borders */
+  --shadow-cta: inset 0 1px 0 rgb(255 255 255 / 0.22), 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-elevated: 0 24px 48px -24px rgb(0 0 0 / 0.7);
+  --shadow-metal: 0 30px 60px -40px rgb(16 185 129 / 0.25);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  /* soft settle for moving indicators */
+  --ease-liquid: cubic-bezier(0.32, 0.72, 0, 1);
 
-  --animate-marquee: marquee 40s linear infinite;
+
+  --animate-marquee: marquee 60s linear infinite;
   --animate-blink: blink 1.1s steps(2, start) infinite;
 
   @keyframes marquee {
@@ -76,6 +91,7 @@
 
   body {
     background: var(--color-bg);
+    scrollbar-color: var(--color-card-2) var(--color-bg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -84,12 +100,12 @@
   }
 
   ::selection {
-    background: var(--color-orange);
+    background: var(--color-accent);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-orange);
+    outline: 2px solid var(--color-accent-2);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -143,45 +159,55 @@
 
 /* ─── Named surfaces (gradients built only from tokens) ────── */
 
-/* Hero: aubergine with a soft Ubuntu-purple bloom + magenta undertone,
-   fading back to the base aubergine so it blends into the next band */
+/* Hero: a single, soft emerald light from the top centre */
 @utility bg-hero {
   background:
-    linear-gradient(180deg, transparent 55%, var(--color-bg)),
-    radial-gradient(55% 60% at 85% 0%, color-mix(in srgb, var(--color-purple) 45%, transparent), transparent 70%),
-    radial-gradient(45% 45% at 0% 80%, color-mix(in srgb, var(--color-magenta) 35%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 50% -5%, color-mix(in srgb, var(--color-accent) 11%, transparent), transparent 70%),
     var(--color-bg);
 }
 
-/* Gentle purple glow at the top of a section */
+/* Very faint light at the top of a section (pricing only) */
 @utility bg-glow-top {
-  background: radial-gradient(50% 60% at 50% 0%, color-mix(in srgb, var(--color-purple) 28%, transparent), transparent);
+  background: radial-gradient(40% 50% at 50% 0%, color-mix(in srgb, var(--color-accent) 6%, transparent), transparent);
 }
 
-/* Inner stage of illustrations (hero visual, placeholder thumbnails) */
+/* Inner stage of illustrations (placeholder thumbnails) */
 @utility bg-stage {
   background: radial-gradient(120% 90% at 50% 0%, var(--color-card), var(--color-bg) 85%);
 }
 
-/* Kowi Bronze — purple surface with a faint bronze warmth */
+/* Kowi Bronze — surface with a faint bronze warmth */
 @utility surface-bronze {
   background:
-    radial-gradient(90% 60% at 0% 0%, color-mix(in srgb, var(--color-bronze) 12%, transparent), transparent 60%),
+    radial-gradient(90% 60% at 0% 0%, color-mix(in srgb, var(--color-bronze) 8%, transparent), transparent 60%),
     var(--color-card);
 }
 
-/* Kowi Metal — premium purple surface */
+/* Kowi Metal — surface with one quiet emerald light in the corner */
 @utility surface-metal {
   background:
-    radial-gradient(110% 70% at 100% 0%, color-mix(in srgb, var(--color-orange) 14%, transparent), transparent 55%),
-    linear-gradient(165deg, color-mix(in srgb, var(--color-purple) 55%, var(--color-card)), var(--color-card) 45%, var(--color-bg-2));
+    radial-gradient(80% 55% at 100% 0%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 60%),
+    var(--color-card);
 }
 
-/* Final CTA — Ubuntu purple → magenta → aubergine */
+/* Final CTA — secondary band lit faintly from below */
 @utility surface-cta {
   background:
-    radial-gradient(60% 80% at 50% 100%, color-mix(in srgb, var(--color-orange) 16%, transparent), transparent 70%),
-    linear-gradient(140deg, var(--color-purple), var(--color-magenta) 45%, var(--color-bg-2));
+    radial-gradient(55% 80% at 50% 110%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 70%),
+    var(--color-bg-2);
+}
+
+/* ─── Header bar ──────────────────────────────────────────────
+   The only translucent surface: a near-opaque bar with a light blur,
+   solid where backdrop-filter is unsupported. */
+@utility liquid-bar {
+  background: color-mix(in srgb, var(--color-bg) 94%, transparent);
+
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    background: color-mix(in srgb, var(--color-bg) 78%, transparent);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    backdrop-filter: blur(12px) saturate(140%);
+  }
 }
 
 /* Showcase card height — width is derived from each video's aspect ratio */

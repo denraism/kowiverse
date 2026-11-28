@@ -47,10 +47,10 @@ export function VideoShowcase() {
         aria-pressed={active}
         onClick={() => setFilter(value)}
         className={cn(
-          "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-all duration-300",
+          "min-h-11 shrink-0 whitespace-nowrap rounded-(--radius-control) border px-3.5 text-sm font-medium transition-colors duration-200",
           active
-            ? "border-orchid/50 bg-purple text-fg shadow-[0_8px_24px_-12px_var(--color-purple)]"
-            : "border-line-2 bg-card/30 text-muted hover:border-orchid/50 hover:text-fg",
+            ? "border-accent/60 bg-deep text-fg"
+            : "border-line bg-transparent text-muted hover:border-white/15 hover:text-fg",
         )}
       >
         {label}
@@ -59,32 +59,28 @@ export function VideoShowcase() {
   };
 
   return (
-    <section id="showcase" aria-labelledby="showcase-title" className="section-y relative border-t border-line/60 bg-bg-2">
+    <section id="showcase" aria-labelledby="showcase-title" className="section-y relative border-t border-line bg-bg-2">
       <div className="container-page">
         <SectionHeading
           id="showcase-title"
           label={showcaseContent.label}
           title={showcaseContent.title}
           description={showcaseContent.description}
-        />
-      </div>
-
-      {categories.length > 1 ? (
-        <div
-          role="group"
-          aria-label="Filter kategori animasi"
-          className="carousel-pad no-scrollbar mt-10 flex gap-2 overflow-x-auto pb-1 md:mt-12"
         >
-          {chip(ALL, showcaseContent.allFilterLabel)}
-          {categories.map((c) => chip(c, c))}
-        </div>
-      ) : null}
+          {categories.length > 1 ? (
+            <div role="group" aria-label="Filter kategori animasi" className="flex flex-wrap gap-2 md:justify-end">
+              {chip(ALL, showcaseContent.allFilterLabel)}
+              {categories.map((c) => chip(c, c))}
+            </div>
+          ) : null}
+        </SectionHeading>
+      </div>
 
       <div
         role="region"
         aria-roledescription="carousel"
         aria-label={showcaseContent.title}
-        className="mt-8"
+        className="mt-12 md:mt-14"
       >
         <p className="sr-only" aria-live="polite">
           {filtered.length} video ditampilkan

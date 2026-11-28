@@ -1,7 +1,7 @@
 /**
  * Abstract placeholder artwork used when a video has no thumbnail yet.
  * Motifs sit inside the central area so they survive 9:16, 16:9 and 1:1 crops.
- * Colours come from the design tokens in app/globals.css (purple-led, one orange focal point).
+ * Colours come from the design tokens in app/globals.css (deep-led, one accent focal point).
  */
 
 type Motif = "stick" | "story" | "character" | "cinematic" | "experiment";
@@ -18,10 +18,10 @@ function pickMotif(category: string, index: number): Motif {
 
 /** Token-based paint helpers (CSS variables work reliably via `style`, not SVG attributes). */
 const T = {
-  orange: "var(--color-orange)",
-  purple: "var(--color-purple)",
-  magenta: "var(--color-magenta)",
-  orchid: "var(--color-orchid)",
+  accent: "var(--color-accent)",
+  deep: "var(--color-deep)",
+  deep2: "var(--color-deep-2)",
+  mint: "var(--color-mint)",
   muted: "var(--color-muted)",
   fg: "var(--color-fg)",
   ink: "var(--color-ink)",
@@ -62,12 +62,12 @@ export function VideoPlaceholderArt({ category, index = 0 }: { category: string;
 
       {motif === "stick" && (
         <g>
-          <circle cx="62" cy="40" r="15" style={fill(T.purple, 0.9)} />
-          <circle cx="62" cy="40" r="19" style={stroke(T.orchid, 0.3)} strokeWidth="0.5" />
+          <circle cx="62" cy="40" r="15" style={fill(T.deep, 0.9)} />
+          <circle cx="62" cy="40" r="19" style={stroke(T.mint, 0.3)} strokeWidth="0.5" />
           <StickFigure x={-14} opacity={0.15} />
           <StickFigure x={-7} opacity={0.35} />
           <StickFigure x={0} />
-          <circle cx="66" cy="63" r="2.6" style={fill(T.orange)} />
+          <circle cx="66" cy="63" r="2.6" style={fill(T.accent)} />
           <path d="M30 68 H72" style={stroke(T.muted, 0.25)} strokeWidth="0.6" />
         </g>
       )}
@@ -76,37 +76,37 @@ export function VideoPlaceholderArt({ category, index = 0 }: { category: string;
         <g>
           {[0, 1, 2].map((i) => (
             <g key={i} transform={`translate(${26 + i * 17} 38)`}>
-              <rect width="14" height="20" rx="1.5" style={i === 1 ? fill(T.purple) : stroke(T.orchid, 0.55)} strokeWidth="0.7" />
+              <rect width="14" height="20" rx="1.5" style={i === 1 ? fill(T.deep) : stroke(T.mint, 0.55)} strokeWidth="0.7" />
               <circle cx="7" cy={i === 1 ? 8 : 9} r="2.2" style={i === 1 ? fill(T.fg) : fill(T.muted, 0.4)} />
               <path d="M3 16 H11" style={stroke(i === 1 ? T.fg : T.muted, i === 1 ? 0.8 : 0.3)} strokeWidth="0.7" />
             </g>
           ))}
-          <circle cx="54.6" cy="41.4" r="1.1" style={fill(T.orange)} />
+          <circle cx="54.6" cy="41.4" r="1.1" style={fill(T.accent)} />
           <path d="M26 64 H72" style={stroke(T.muted, 0.2)} strokeWidth="0.5" strokeDasharray="1 2" />
         </g>
       )}
 
       {motif === "character" && (
         <g>
-          <circle cx="50" cy="50" r="22" style={stroke(T.orchid, 0.35)} strokeWidth="0.6" />
-          <circle cx="50" cy="50" r="15" style={fill(T.purple)} />
+          <circle cx="50" cy="50" r="22" style={stroke(T.mint, 0.35)} strokeWidth="0.6" />
+          <circle cx="50" cy="50" r="15" style={fill(T.deep)} />
           <ellipse cx="44.5" cy="48" rx="2" ry="3" style={fill(T.fg)} />
           <ellipse cx="55.5" cy="48" rx="2" ry="3" style={fill(T.fg)} />
           <path d="M45 56 Q50 60 55 56" style={stroke(T.fg)} strokeWidth="1.4" strokeLinecap="round" />
-          <circle cx="41" cy="54" r="1.6" style={fill(T.orange, 0.85)} />
-          <circle cx="59" cy="54" r="1.6" style={fill(T.orange, 0.85)} />
-          <circle cx="72" cy="30" r="2" style={fill(T.orchid, 0.7)} />
+          <circle cx="41" cy="54" r="1.6" style={fill(T.accent, 0.85)} />
+          <circle cx="59" cy="54" r="1.6" style={fill(T.accent, 0.85)} />
+          <circle cx="72" cy="30" r="2" style={fill(T.mint, 0.7)} />
         </g>
       )}
 
       {motif === "cinematic" && (
         <g>
-          <circle cx="50" cy="54" r="14" style={fill(T.orange)} />
+          <circle cx="50" cy="54" r="14" style={fill(T.accent)} />
           <rect x="0" y="54" width="100" height="46" style={fill(T.bg)} />
           <path d="M24 60 L36 52 L44 57 L54 49 L64 56 L76 60" style={stroke(T.muted, 0.4)} strokeWidth="0.7" />
-          <path d="M24 54 H76" style={stroke(T.orchid, 0.6)} strokeWidth="0.5" />
+          <path d="M24 54 H76" style={stroke(T.mint, 0.6)} strokeWidth="0.5" />
           {[0, 1, 2].map((i) => (
-            <path key={i} d={`M${32 + i * 4} ${64 + i * 3} H${68 - i * 4}`} style={stroke(T.orchid, 0.3)} strokeWidth="0.5" />
+            <path key={i} d={`M${32 + i * 4} ${64 + i * 3} H${68 - i * 4}`} style={stroke(T.mint, 0.3)} strokeWidth="0.5" />
           ))}
         </g>
       )}
@@ -114,8 +114,8 @@ export function VideoPlaceholderArt({ category, index = 0 }: { category: string;
       {motif === "experiment" && (
         <g strokeWidth="0.8">
           <circle cx="44" cy="46" r="12" style={stroke(T.muted, 0.45)} />
-          <rect x="44" y="44" width="18" height="18" style={stroke(T.orchid)} transform="rotate(12 53 53)" />
-          <path d="M36 66 L46 50 L56 66 Z" style={fill(T.orange, 0.9)} />
+          <rect x="44" y="44" width="18" height="18" style={stroke(T.mint)} transform="rotate(12 53 53)" />
+          <path d="M36 66 L46 50 L56 66 Z" style={fill(T.accent, 0.9)} />
           <circle cx="62" cy="36" r="2.5" style={fill(T.fg)} />
         </g>
       )}

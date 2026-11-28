@@ -3,12 +3,16 @@
 import { useId, useState } from "react";
 import { Plus } from "lucide-react";
 import { faqContent } from "@/config/content";
-import { faqs } from "@/config/faq";
+import { faqs as allFaqs } from "@/config/faq";
+import { SHOW_KOWI_BRONZE } from "@/config/pricing";
 import { buildWhatsAppUrl } from "@/lib/links";
 import { cn } from "@/lib/ui";
 import { WhatsAppIcon } from "./icons/BrandIcons";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
+
+// The Bronze-vs-Metal question is hidden while Kowi Bronze is hidden.
+const faqs = allFaqs.filter((f) => SHOW_KOWI_BRONZE || !f.bronzeOnly);
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -16,7 +20,7 @@ export function FAQ() {
   const whatsappUrl = buildWhatsAppUrl();
 
   return (
-    <section id="faq" aria-labelledby="faq-title" className="section-y relative border-t border-line/60 bg-bg">
+    <section id="faq" aria-labelledby="faq-title" className="section-y relative border-t border-line bg-bg-2">
       <div className="container-page grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading id="faq-title" label={faqContent.label} title={faqContent.title} description={faqContent.description} />
@@ -28,7 +32,7 @@ export function FAQ() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-wa-avoid
-                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-full border border-line-2 bg-card/40 px-5 text-sm font-medium transition-colors hover:border-whatsapp/60 hover:text-whatsapp"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-(--radius-control) border border-line bg-card px-5 text-sm font-medium transition-colors duration-200 hover:border-whatsapp/60 hover:text-whatsapp"
               >
                 <WhatsAppIcon className="size-4 text-whatsapp" />
                 {faqContent.moreQuestionsCta}
@@ -38,7 +42,7 @@ export function FAQ() {
         </div>
 
         <Reveal>
-          <ul className="flex flex-col gap-3">
+          <ul className="border-t border-line">
             {faqs.map((faq, i) => {
               const open = openIndex === i;
               const btnId = `${baseId}-q-${i}`;
@@ -46,10 +50,7 @@ export function FAQ() {
               return (
                 <li
                   key={faq.question}
-                  className={cn(
-                    "rounded-2xl border transition-colors duration-500",
-                    open ? "border-orchid/40 bg-card" : "border-line bg-card/55 hover:border-line-2 hover:bg-card/80",
-                  )}
+                  className="border-b border-line"
                 >
                   <h3>
                     <button
@@ -58,16 +59,16 @@ export function FAQ() {
                       aria-expanded={open}
                       aria-controls={panelId}
                       onClick={() => setOpenIndex(open ? null : i)}
-                      className="group flex w-full items-center justify-between gap-5 rounded-2xl px-5 py-5 text-left text-base font-medium tracking-[-0.015em] transition-colors hover:text-orange sm:px-6 sm:text-lg"
+                      className="group flex min-h-16 w-full items-center justify-between gap-5 rounded-(--radius-control) py-5 text-left text-base font-medium tracking-[-0.015em] transition-colors duration-200 hover:text-fg sm:text-[1.0625rem]"
                     >
-                      <span className="flex gap-4">
-                        <span className={cn("mt-0.5 hidden w-5 shrink-0 font-mono text-xs sm:inline", open ? "text-orange" : "text-subtle")}>0{i + 1}</span>
+                      <span className={cn("flex gap-4", open ? "text-fg" : "text-fg/85")}>
+                        <span className={cn("mt-0.5 hidden w-5 shrink-0 font-mono text-xs sm:inline", open ? "text-accent-2" : "text-subtle")}>0{i + 1}</span>
                         {faq.question}
                       </span>
                       <span
                         className={cn(
-                          "flex size-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ease-out-expo",
-                          open ? "rotate-45 border-orange bg-orange text-ink" : "border-line-2 bg-bg/40 text-fg group-hover:border-orange/60",
+                          "flex size-8 shrink-0 items-center justify-center transition-[transform,color] duration-200",
+                          open ? "rotate-45 text-accent-2" : "text-subtle group-hover:text-fg",
                         )}
                       >
                         <Plus className="size-4" aria-hidden="true" />
@@ -80,12 +81,12 @@ export function FAQ() {
                     aria-labelledby={btnId}
                     inert={!open}
                     className={cn(
-                      "grid transition-[grid-template-rows,opacity] duration-500 ease-out-expo",
+                      "grid transition-[grid-template-rows,opacity] duration-250 ease-(--ease-standard)",
                       open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
                   >
                     <div className="overflow-hidden">
-                      <div className="flex flex-col gap-3 px-5 pb-6 text-[0.9375rem] leading-relaxed text-muted sm:pl-[3.75rem] sm:pr-16">
+                      <div className="flex max-w-2xl flex-col gap-3 pb-6 text-[0.9375rem] leading-relaxed text-muted sm:pl-9 sm:pr-12">
                         {faq.answer.split(/\n\n+/).map((p, pi) => (
                           <p key={pi}>{p}</p>
                         ))}
