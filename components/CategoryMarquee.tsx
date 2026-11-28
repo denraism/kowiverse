@@ -1,25 +1,20 @@
 import { videoCategories } from "@/config/videos";
 
-/** Decorative band of animation styles between Hero and Showcase. */
+/** Quiet strip of the animation styles KowiVerse covers, between Hero and Showcase. */
 export function CategoryMarquee() {
   const items = videoCategories.length ? videoCategories : ["Animation Prompts"];
-  const row = (hidden: boolean) => (
-    <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
-      {[...items, ...items].map((c, i) => (
-        <li key={i} className="flex items-center whitespace-nowrap">
-          <span className="px-6 text-sm font-medium uppercase tracking-[0.18em] text-muted sm:px-8 sm:text-[0.9375rem]">{c}</span>
-          <span className="text-orchid" aria-hidden="true">✦</span>
-        </li>
-      ))}
-    </ul>
-  );
-
   return (
-    <div className="relative mt-10 overflow-hidden border-y border-line/70 bg-card/40 py-5 sm:mt-16 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-      <h2 className="sr-only">Gaya animasi yang bisa kamu eksplorasi</h2>
-      <div className="flex w-max motion-safe:animate-marquee">
-        {row(false)}
-        {row(true)}
+    <div className="mt-12 border-y border-line/70 bg-bg-2 sm:mt-16">
+      <div className="container-page flex flex-col gap-3 py-5 sm:flex-row sm:items-center sm:gap-8">
+        <h2 className="shrink-0 text-sm font-medium text-subtle">Gaya animasi</h2>
+        <ul className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-muted sm:gap-x-7">
+          {items.map((c) => (
+            <li key={c} className="flex items-center gap-2">
+              <span aria-hidden="true" className="size-1 rounded-full bg-accent" />
+              {c}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );

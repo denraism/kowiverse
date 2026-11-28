@@ -43,24 +43,13 @@ export function HeroVideo({ src, poster, title }: HeroVideoProps) {
 
   return (
     <div className="relative">
-      {/* soft accent behind the card */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -inset-x-6 -top-10 bottom-0 rounded-[3rem] bg-[radial-gradient(60%_50%_at_70%_30%,color-mix(in_srgb,var(--color-purple)_45%,transparent),transparent_70%)]"
-      />
-
-      <figure className="relative overflow-hidden rounded-[1.75rem] border border-line bg-bg-2/90 shadow-elevated ring-1 ring-white/[0.03] backdrop-blur-sm">
+      <figure className="relative overflow-hidden rounded-(--radius-panel) border border-line bg-card shadow-elevated">
         {/* window bar */}
-        <div className="flex items-center justify-between gap-3 border-b border-line px-5 py-3.5">
-          <div aria-hidden="true" className="flex items-center gap-1.5">
-            <span className="size-2.5 rounded-full bg-line-2" />
-            <span className="size-2.5 rounded-full bg-line-2" />
-            <span className="size-2.5 rounded-full bg-line-2" />
-          </div>
-          <figcaption className="truncate font-mono text-[0.6875rem] tracking-wider text-subtle">{title}</figcaption>
-          <span aria-hidden="true" className="flex shrink-0 items-center gap-1.5 font-mono text-[0.6875rem] text-muted">
-            <span className="size-1.5 rounded-full bg-orange motion-safe:animate-pulse" />
-            play
+        <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
+          <figcaption className="truncate text-[0.8125rem] font-medium text-muted">{title}</figcaption>
+          <span className="flex shrink-0 items-center gap-1.5 text-xs text-subtle">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-accent" />
+            Contoh hasil
           </span>
         </div>
 
@@ -84,7 +73,7 @@ export function HeroVideo({ src, poster, title }: HeroVideoProps) {
               onClick={toggleSound}
               aria-pressed={!muted}
               aria-label={muted ? "Nyalakan suara video" : "Matikan suara video"}
-              className="absolute bottom-3 right-3 inline-flex size-10 items-center justify-center rounded-full border border-white/15 bg-black/55 text-white backdrop-blur transition-colors hover:bg-orange hover:text-ink"
+              className="absolute bottom-3 right-3 inline-flex size-11 items-center justify-center rounded-(--radius-control) border border-white/15 bg-bg/80 text-fg transition-colors duration-200 hover:border-accent hover:bg-accent hover:text-ink"
             >
               {muted ? <VolumeX className="size-4" aria-hidden="true" /> : <Volume2 className="size-4" aria-hidden="true" />}
             </button>
@@ -92,17 +81,6 @@ export function HeroVideo({ src, poster, title }: HeroVideoProps) {
         </div>
       </figure>
 
-      {/* floating chip */}
-      <div
-        aria-hidden="true"
-        className="absolute -bottom-5 left-5 flex items-center gap-2 rounded-full border border-line-2 bg-card/95 px-4 py-2.5 text-xs font-medium text-fg shadow-xl backdrop-blur sm:left-8"
-      >
-        <span className="font-mono text-orchid">idea</span>
-        <span className="text-subtle">→</span>
-        <span className="font-mono text-orchid">prompt</span>
-        <span className="text-subtle">→</span>
-        <span className="text-orange-soft">animation</span>
-      </div>
     </div>
   );
 }

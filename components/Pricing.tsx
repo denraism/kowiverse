@@ -17,9 +17,9 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
     <article
       aria-labelledby={`plan-${pkg.id}`}
       className={cn(
-        "relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border p-7 sm:p-9",
+        "relative flex h-full flex-col overflow-hidden rounded-(--radius-panel) border p-7 sm:p-9",
         premium
-          ? "surface-metal border-orange/50 shadow-metal ring-1 ring-orchid/15"
+          ? "surface-metal border-line-2 shadow-metal"
           : "surface-bronze border-line",
       )}
     >
@@ -28,23 +28,23 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
         aria-hidden="true"
         className={cn(
           "absolute inset-x-8 top-0 h-px",
-          premium ? "bg-gradient-to-r from-transparent via-orange to-transparent" : "bg-gradient-to-r from-transparent via-bronze/60 to-transparent",
+          premium ? "bg-gradient-to-r from-transparent via-accent/70 to-transparent" : "bg-gradient-to-r from-transparent via-bronze/60 to-transparent",
         )}
       />
 
       <div className="flex min-h-7 items-center justify-between gap-4">
-        <p className={cn("font-mono text-[0.6875rem] font-medium uppercase tracking-[0.2em]", premium ? "text-orange-soft" : "text-bronze")}>
+        <p className={cn("text-sm font-medium", premium ? "text-accent-2" : "text-bronze")}>
           {pkg.label}
         </p>
         {premium ? (
-          <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-orange px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-ink shadow-cta">
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-accent/40 bg-deep/60 px-2.5 py-1 text-xs font-medium text-mint">
             <Sparkles className="size-3" aria-hidden="true" />
             {pricingContent.recommendedLabel}
           </span>
         ) : null}
       </div>
 
-      <h3 id={`plan-${pkg.id}`} className="mt-5 text-[1.75rem] font-semibold tracking-[-0.035em] sm:text-[2rem]">
+      <h3 id={`plan-${pkg.id}`} className="mt-5 text-[1.625rem] font-semibold tracking-[-0.03em] sm:text-[1.875rem]">
         {pkg.name}
       </h3>
       <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{pkg.description}</p>
@@ -53,12 +53,12 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
         {hasPrice ? (
           <p className="flex flex-wrap items-baseline gap-x-2">
             {pkg.originalPrice.trim() ? (
-              <span className="text-lg font-medium text-subtle line-through decoration-orange/70 decoration-2 sm:text-xl">
+              <span className="text-lg font-medium text-subtle line-through decoration-accent/70 decoration-2 sm:text-xl">
                 <span className="sr-only">Harga normal </span>
                 {pkg.originalPrice}
               </span>
             ) : null}
-            <span className="text-4xl font-semibold tracking-[-0.04em] sm:text-[2.75rem]">
+            <span className="text-4xl font-semibold tracking-[-0.035em] sm:text-[2.5rem]">
               {pkg.originalPrice.trim() ? <span className="sr-only">Harga sekarang </span> : null}
               {pkg.price}
             </span>
@@ -85,7 +85,7 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
                 <span
                   className={cn(
                     "mt-px flex size-5 shrink-0 items-center justify-center rounded-full",
-                    premium ? "bg-orange text-ink" : "bg-bronze/15 text-bronze ring-1 ring-bronze/35",
+                    premium ? "bg-deep text-accent-2 ring-1 ring-accent/30" : "bg-bronze/15 text-bronze ring-1 ring-bronze/35",
                   )}
                 >
                   <Check className="size-3" strokeWidth={3} aria-hidden="true" />
@@ -108,7 +108,7 @@ function PricingCard({ pkg }: { pkg: PricingPackage }) {
             className={cn(premium ? buttonStyles.primary : buttonStyles.secondary, "min-h-13 w-full", !premium && "hover:border-bronze/70")}
           >
             {pkg.ctaLabel}
-            <ArrowUpRight className="size-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
+            <ArrowUpRight className="size-4 transition-transform duration-200 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" aria-hidden="true" />
           </a>
         ) : (
           <>
@@ -174,7 +174,7 @@ export function Pricing() {
               const Icon = i === 0 ? ShieldCheck : Download;
               return (
                 <li key={t} className="flex items-start gap-2 sm:items-center">
-                  <Icon className="mt-0.5 size-4 shrink-0 text-orange sm:mt-0" aria-hidden="true" />
+                  <Icon className="mt-0.5 size-4 shrink-0 text-accent sm:mt-0" aria-hidden="true" />
                   {t}
                 </li>
               );

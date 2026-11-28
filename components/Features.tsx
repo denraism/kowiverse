@@ -13,32 +13,27 @@ const icons: Record<(typeof featuresContent.items)[number]["icon"], LucideIcon> 
 export function Features() {
   return (
     <section id="features" aria-labelledby="features-title" className="section-y relative border-t border-line/60 bg-bg-2">
-      <div className="container-page">
-        <SectionHeading
-          id="features-title"
-          label={featuresContent.label}
-          title={featuresContent.title}
-          description={featuresContent.description}
-        />
+      <div className="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading
+            id="features-title"
+            label={featuresContent.label}
+            title={featuresContent.title}
+            description={featuresContent.description}
+          />
+        </div>
 
-        <ul className="mt-14 grid gap-4 sm:grid-cols-2 md:mt-16 lg:gap-5 xl:grid-cols-4">
+        <ul className="divide-y divide-line border-y border-line">
           {featuresContent.items.map((f, i) => {
             const Icon = icons[f.icon];
             return (
-              <Reveal as="li" key={f.title} delay={i * 0.08} className="h-full">
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-card p-6 transition-[border-color,background-color,transform] duration-500 ease-out-expo hover:-translate-y-1 hover:border-orchid/45 hover:bg-card-2 sm:p-7">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-orange to-transparent transition-transform duration-700 ease-out-expo group-hover:scale-x-100"
-                  />
-                  <div className="flex items-center justify-between">
-                    <span className="flex size-12 items-center justify-center rounded-xl bg-purple/45 text-orange ring-1 ring-orchid/25 transition-all duration-500 ease-out-expo group-hover:-rotate-6 group-hover:bg-orange group-hover:text-ink group-hover:ring-orange">
-                      <Icon className="size-[1.375rem]" strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <span className="font-mono text-xs text-subtle">/0{i + 1}</span>
-                  </div>
-                  <h3 className="mt-10 text-lg font-semibold tracking-[-0.02em] sm:text-xl">{f.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">{f.description}</p>
+              <Reveal as="li" key={f.title} delay={i * 0.06}>
+                <article className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-2 py-7 sm:gap-x-7 sm:py-8">
+                  <span className="row-span-2 mt-0.5 flex size-10 items-center justify-center rounded-(--radius-control) border border-line bg-card text-accent-2">
+                    <Icon className="size-5" strokeWidth={1.75} aria-hidden="true" />
+                  </span>
+                  <h3 className="text-lg font-semibold tracking-[-0.02em]">{f.title}</h3>
+                  <p className="max-w-lg text-[0.9375rem] leading-relaxed text-muted">{f.description}</p>
                 </article>
               </Reveal>
             );

@@ -47,10 +47,10 @@ export function VideoShowcase() {
         aria-pressed={active}
         onClick={() => setFilter(value)}
         className={cn(
-          "min-h-10 shrink-0 whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-all duration-300",
+          "min-h-11 shrink-0 whitespace-nowrap rounded-(--radius-control) border px-4 text-sm font-medium transition-colors duration-200",
           active
-            ? "border-orchid/50 bg-purple text-fg shadow-[0_8px_24px_-12px_var(--color-purple)]"
-            : "border-line-2 bg-card/30 text-muted hover:border-orchid/50 hover:text-fg",
+            ? "border-accent/60 bg-deep text-fg"
+            : "border-line bg-transparent text-muted hover:border-white/15 hover:text-fg",
         )}
       >
         {label}

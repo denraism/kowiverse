@@ -200,9 +200,9 @@ export function VideoCarousel({ videos, onOpen, resetKey }: VideoCarouselProps) 
       </ul>
 
       <div className="container-page mt-8 flex items-center gap-5 sm:gap-8">
-        <div className="relative h-px flex-1 bg-line-2" aria-hidden="true">
+        <div className="relative h-px flex-1 bg-white/10" aria-hidden="true">
           <div
-            className="absolute inset-y-0 left-0 -top-px h-[3px] rounded-full bg-orange transition-[width,left] duration-200"
+            className="absolute inset-y-0 left-0 -top-px h-[3px] rounded-full bg-accent transition-[width,left] duration-200"
             style={{
               width: `${state.visible * 100}%`,
               left: `${state.progress * (1 - state.visible) * 100}%`,
@@ -221,10 +221,10 @@ export function VideoCarousel({ videos, onOpen, resetKey }: VideoCarouselProps) 
                 disabled={disabled}
                 aria-label={dir === -1 ? "Video sebelumnya" : "Video berikutnya"}
                 className={cn(
-                  "inline-flex size-12 items-center justify-center rounded-full border transition-all duration-300",
+                  "inline-flex size-12 items-center justify-center rounded-(--radius-control) border transition-colors duration-200",
                   disabled
                     ? "cursor-not-allowed border-line text-subtle/50"
-                    : "border-line-2 bg-card/40 text-fg hover:border-orange hover:bg-orange hover:text-ink",
+                    : "border-line bg-card text-fg hover:border-line-2 hover:bg-card-2",
                 )}
               >
                 {dir === -1 ? <ArrowLeft className="size-5" aria-hidden="true" /> : <ArrowRight className="size-5" aria-hidden="true" />}

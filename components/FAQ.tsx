@@ -32,7 +32,7 @@ export function FAQ() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-wa-avoid
-                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-full border border-line-2 bg-card/40 px-5 text-sm font-medium transition-colors hover:border-whatsapp/60 hover:text-whatsapp"
+                className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-(--radius-control) border border-line bg-card px-5 text-sm font-medium transition-colors duration-200 hover:border-whatsapp/60 hover:text-whatsapp"
               >
                 <WhatsAppIcon className="size-4 text-whatsapp" />
                 {faqContent.moreQuestionsCta}
@@ -51,8 +51,8 @@ export function FAQ() {
                 <li
                   key={faq.question}
                   className={cn(
-                    "rounded-2xl border transition-colors duration-500",
-                    open ? "border-orchid/40 bg-card" : "border-line bg-card/55 hover:border-line-2 hover:bg-card/80",
+                    "rounded-(--radius-card) border transition-colors duration-200",
+                    open ? "border-line-2 bg-card" : "border-line bg-bg-2 hover:border-line-2",
                   )}
                 >
                   <h3>
@@ -62,16 +62,16 @@ export function FAQ() {
                       aria-expanded={open}
                       aria-controls={panelId}
                       onClick={() => setOpenIndex(open ? null : i)}
-                      className="group flex w-full items-center justify-between gap-5 rounded-2xl px-5 py-5 text-left text-base font-medium tracking-[-0.015em] transition-colors hover:text-orange sm:px-6 sm:text-lg"
+                      className="group flex w-full items-center justify-between gap-5 rounded-(--radius-card) px-5 py-5 text-left text-base font-medium tracking-[-0.015em] transition-colors duration-200 hover:text-accent-2 sm:px-6 sm:text-[1.0625rem]"
                     >
                       <span className="flex gap-4">
-                        <span className={cn("mt-0.5 hidden w-5 shrink-0 font-mono text-xs sm:inline", open ? "text-orange" : "text-subtle")}>0{i + 1}</span>
+                        <span className={cn("mt-0.5 hidden w-5 shrink-0 font-mono text-xs sm:inline", open ? "text-accent-2" : "text-subtle")}>0{i + 1}</span>
                         {faq.question}
                       </span>
                       <span
                         className={cn(
-                          "flex size-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500 ease-out-expo",
-                          open ? "rotate-45 border-orange bg-orange text-ink" : "border-line-2 bg-bg/40 text-fg group-hover:border-orange/60",
+                          "flex size-9 shrink-0 items-center justify-center rounded-(--radius-control) border transition-[transform,border-color,color] duration-200",
+                          open ? "rotate-45 border-accent/60 text-accent-2" : "border-line text-fg group-hover:border-line-2",
                         )}
                       >
                         <Plus className="size-4" aria-hidden="true" />
@@ -84,7 +84,7 @@ export function FAQ() {
                     aria-labelledby={btnId}
                     inert={!open}
                     className={cn(
-                      "grid transition-[grid-template-rows,opacity] duration-500 ease-out-expo",
+                      "grid transition-[grid-template-rows,opacity] duration-250 ease-(--ease-standard)",
                       open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
                     )}
                   >

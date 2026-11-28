@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
+import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { site } from "@/config/site";
 import { MotionProvider } from "@/components/MotionProvider";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -43,11 +45,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="id" className={`${inter.variable} ${GeistMono.variable}`}>
       <body className="min-h-dvh bg-bg text-fg">
         <a
           href="#main"
-          className="sr-only z-[100] rounded-full bg-orange px-4 py-2 text-sm font-semibold text-black focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          className="sr-only z-[100] rounded-[var(--radius-control)] bg-accent px-4 py-2 text-sm font-semibold text-ink focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
         >
           Lewati ke konten utama
         </a>

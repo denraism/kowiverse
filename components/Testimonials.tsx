@@ -41,7 +41,7 @@ export function Testimonials() {
                 <Reveal as="li" key={`${t.name}-${i}`} delay={(i % 3) * 0.08} className="h-full">
                   <figure className="flex h-full flex-col rounded-2xl border border-line bg-card p-6 sm:p-7">
                     {rating > 0 ? (
-                      <div className="flex gap-1 text-orange" role="img" aria-label={`Rating ${rating} dari 5`}>
+                      <div className="flex gap-1 text-accent" role="img" aria-label={`Rating ${rating} dari 5`}>
                         {Array.from({ length: rating }).map((_, s) => (
                           <Star key={s} className="size-4 fill-current" aria-hidden="true" />
                         ))}
@@ -54,7 +54,7 @@ export function Testimonials() {
                       {t.avatar ? (
                         <Image src={t.avatar} alt={`Foto ${t.name}`} width={40} height={40} className="size-10 rounded-full object-cover" />
                       ) : (
-                        <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-full bg-purple/60 text-sm font-semibold text-fg ring-1 ring-orchid/30">
+                        <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-full bg-deep/60 text-sm font-semibold text-fg ring-1 ring-mint/30">
                           {initials(t.name)}
                         </span>
                       )}
@@ -70,9 +70,9 @@ export function Testimonials() {
           </ul>
         ) : (
           <Reveal className="mt-14 md:mt-16">
-            <div className="flex flex-col items-start gap-6 rounded-2xl border border-dashed border-line-2 bg-card/60 p-7 sm:p-10 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col items-start gap-6 rounded-(--radius-card) border border-line bg-card p-7 sm:p-10 md:flex-row md:items-center md:justify-between">
               <div className="flex items-start gap-5">
-                <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-purple/45 text-orange ring-1 ring-orchid/25">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-(--radius-control) border border-line bg-bg-2 text-accent-2">
                   <MessageSquareQuote className="size-5" aria-hidden="true" />
                 </span>
                 <div>

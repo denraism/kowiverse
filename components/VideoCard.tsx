@@ -37,7 +37,7 @@ export function VideoCard({ video, index, onOpen, focusable = true }: VideoCardP
             ? `${video.title} — ${showcaseContent.comingSoonLabel}. Lihat detail`
             : `Putar video: ${video.title}`
         }
-        className="group/card relative flex h-(--card-h) w-full items-center overflow-hidden rounded-2xl border border-line bg-card text-left shadow-elevated transition-[border-color,transform] duration-500 ease-out-expo hover:border-orchid/60 focus-visible:border-orange"
+        className="group/card relative flex h-(--card-h) w-full items-center overflow-hidden rounded-(--radius-card) border border-line bg-card text-left transition-[border-color] duration-200 hover:border-line-2 focus-visible:border-accent"
       >
         {/* media keeps its true aspect ratio; letterboxed only when the card is width-capped */}
         <span className="relative block w-full overflow-hidden" style={{ aspectRatio: `${r}` }}>
@@ -47,11 +47,11 @@ export function VideoCard({ video, index, onOpen, focusable = true }: VideoCardP
               alt={`Thumbnail ${video.title} — ${video.category}`}
               fill
               sizes="(max-width: 768px) 80vw, 480px"
-              className="object-cover transition-transform duration-700 ease-out-expo group-hover/card:scale-[1.04]"
+              className="object-cover transition-transform duration-500 ease-out-expo group-hover/card:scale-[1.02]"
               onError={() => setImgFailed(true)}
             />
           ) : (
-            <span className="absolute inset-0 transition-transform duration-700 ease-out-expo group-hover/card:scale-[1.04]">
+            <span className="absolute inset-0 transition-transform duration-500 ease-out-expo group-hover/card:scale-[1.02]">
               <VideoPlaceholderArt category={video.category} index={index} />
             </span>
           )}
@@ -61,22 +61,22 @@ export function VideoCard({ video, index, onOpen, focusable = true }: VideoCardP
         <span aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-bg/30" />
 
         <span className="pointer-events-none absolute left-3 right-3 top-3 flex items-start justify-between gap-2">
-          <span className="truncate rounded-full border border-white/10 bg-bg/60 px-2.5 py-1 text-[0.6875rem] font-medium text-fg/90 backdrop-blur-md">
+          <span className="truncate rounded-md border border-line/80 bg-bg/80 px-2 py-1 text-[0.6875rem] font-medium text-fg/90">
             {video.category}
           </span>
-          <span className="shrink-0 rounded-full bg-bg/60 px-2 py-1 font-mono text-[0.625rem] text-fg/70 backdrop-blur-md">
+          <span className="shrink-0 rounded-md bg-bg/80 px-2 py-1 font-mono text-[0.625rem] text-fg/70">
             {video.aspectRatio}
           </span>
         </span>
 
         <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <span className="flex size-14 items-center justify-center rounded-full border border-orange/70 bg-bg/55 text-orange backdrop-blur-md transition-all duration-500 ease-out-expo group-hover/card:scale-110 group-hover/card:border-orange group-hover/card:bg-orange group-hover/card:text-ink group-hover/card:shadow-cta">
+          <span className="flex size-14 items-center justify-center rounded-full border border-accent/70 bg-bg/80 text-accent-2 transition-colors duration-200 group-hover/card:border-accent group-hover/card:bg-accent group-hover/card:text-ink">
             <Play className="ml-0.5 size-5 fill-current" aria-hidden="true" />
           </span>
         </span>
 
         {isPlaceholder ? (
-          <span className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-purple/70 px-2.5 py-1 font-mono text-[0.625rem] font-medium uppercase tracking-[0.14em] text-fg ring-1 ring-orchid/40 backdrop-blur-md">
+          <span className="pointer-events-none absolute bottom-3 left-3 rounded-md bg-deep/80 px-2.5 py-1 text-xs font-medium text-mint ring-1 ring-accent/40 backdrop-blur-md">
             {showcaseContent.comingSoonLabel}
           </span>
         ) : null}

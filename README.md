@@ -1,10 +1,10 @@
 # KowiVerse — Website
 
-> **Animation Prompts. Unlimited Possibilities.**
+> **From idea to animated short.**
 
-Landing page resmi KowiVerse: Ubuntu-inspired (deep aubergine × purple × orange), Bahasa Indonesia × English, fully responsive, dengan video showcase, dua paket harga (Kowi Bronze & Kowi Metal) yang terhubung ke Lynk.id, dan tombol WhatsApp mengambang.
+Landing page resmi KowiVerse: bertema Emerald Minimal (gelap netral × aksen emerald), Bahasa Indonesia × English, fully responsive, dengan video showcase, dua paket harga (Kowi Bronze & Kowi Metal) yang terhubung ke Lynk.id, dan tombol WhatsApp mengambang.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide Icons · Geist font
+**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide Icons · Inter (Geist Mono untuk angka/kode)
 
 ---
 
@@ -74,35 +74,31 @@ npm start
 
 ## 3. Branding & logo
 
-### Warna (Ubuntu-inspired: Deep Aubergine × Ubuntu Purple × Ubuntu Orange)
-Semua warna adalah design tokens di blok `@theme` paling atas `app/globals.css`. Komponen hanya memakai nama token (mis. `bg-card`, `text-muted`, `bg-orange`), jadi cukup ubah nilai di sana dan seluruh website ikut berubah.
+### Warna (Emerald Minimal)
+Semua warna adalah design tokens di blok `@theme` paling atas `app/globals.css`. Komponen hanya memakai nama token (mis. `bg-card`, `text-muted`, `bg-accent`), jadi cukup ubah nilai di sana dan seluruh website ikut berubah.
 
 ```css
---color-bg: #1b1230;          /* Deep Aubergine — background utama */
---color-bg-2: #25163a;        /* Dark Purple — background section selang-seling */
---color-card: #302044;        /* Purple Surface — kartu */
---color-line: #493557;        /* Muted Purple — border */
---color-orange: #e95420;      /* Ubuntu Orange — CTA, state aktif, ikon kecil */
---color-purple: #77216f;      /* Ubuntu Purple — aksen sekunder (filter aktif, Kowi Metal) */
---color-magenta: #5e2750;     /* Dark Magenta — gradien pendukung */
---color-fg: #ffffff;          /* teks utama */
---color-muted: #d6ccdf;       /* Soft Lavender — teks sekunder */
+--color-bg: #080d0b;                    /* background utama */
+--color-bg-2: #0d1511;                  /* background section selang-seling */
+--color-card: #111c16;                  /* permukaan / kartu */
+--color-card-2: #17251d;                /* permukaan terangkat / hover */
+--color-line: rgb(255 255 255 / 0.08);  /* border halus */
+--color-line-2: rgb(52 211 153 / 0.25); /* border hover / penekanan */
+--color-accent: #10b981;                /* emerald utama — CTA, state aktif */
+--color-accent-2: #34d399;              /* emerald sekunder — hover, teks aksen kecil */
+--color-mint: #6ee7b7;                  /* emerald lembut — highlight tenang */
+--color-fg: #f0fdf4;                    /* teks utama */
+--color-muted: #a7b8ae;                 /* teks sekunder */
+--color-subtle: #788880;                /* teks redup — label meta kecil (sedikit lebih terang dari #718078 agar lolos AA) */
+--color-ink: #06100c;                   /* teks di atas tombol emerald */
 ```
 
-Token turunan (sudah dicek kontras WCAG AA):
+Token semantik: `--color-success` `#34d399`, `--color-warning` `#fbbf24`, `--color-error` `#fb7185`, `--color-info` `#67e8f9`.
+Radius: `--radius-control` 10px (tombol, chip), `--radius-card` 14px, `--radius-panel` 16px.
 
-| Token | Fungsi |
-| --- | --- |
-| `--color-ink` `#1b1230` | Teks di atas tombol orange (teks putih di atas #E95420 kontrasnya hanya 3.6:1, tidak lolos AA) |
-| `--color-orange-soft` `#f47a4c` | Teks orange kecil di atas kartu ungu (orange asli terlalu redup di sana) |
-| `--color-orange-2` `#f06a3a` | Hover tombol orange |
-| `--color-orchid` `#c77dbf` | Garis/aksen ungu muda (onion-skin, label step, tagline) |
-| `--color-subtle` `#a797b8` | Teks tersier / label meta |
-| `--color-card-2`, `--color-line-2` | Permukaan hover & border yang lebih tegas |
+Gradien bernama (juga di `globals.css`, dibangun dari token): `bg-hero`, `bg-glow-top`, `bg-stage`, `surface-bronze`, `surface-metal`, `surface-cta`. Satu-satunya permukaan transparan adalah header (`liquid-bar`).
 
-Gradien bernama (juga di `globals.css`, dibangun dari token): `bg-hero`, `bg-glow-top`, `bg-stage`, `surface-bronze`, `surface-metal`, `surface-cta`.
-
-**Panduan proporsi:** ±65% background aubergine gelap, ±25% permukaan ungu, ±10% aksen orange. Pakai orange hanya untuk CTA utama, state aktif, ikon kecil, dan highlight penting.
+**Panduan:** emerald hanya untuk aksen — CTA utama, state aktif, ikon kecil, highlight penting. Kedalaman dibuat dari tingkatan permukaan (`bg` → `bg-2` → `card` → `card-2`) dan border tipis, bukan dari bayangan, glow, atau efek kaca.
 
 **Tempat yang tidak bisa membaca CSS:** gambar share (`app/opengraph-image.tsx`) dan warna browser (`theme-color`) memakai salinan palet di `config/theme.ts`; favicon `app/icon.svg` adalah file statis. Kalau palet diubah, perbarui ketiganya juga.
 
@@ -138,8 +134,8 @@ Contoh — mengganti headline hero:
 
 ```ts
 export const heroContent = {
-  headline: "Turn Your Imagination Into Animation.",
-  highlight: "Animation.",   // bagian headline yang diwarnai orange
+  headline: "Turn your story into an animated short.",
+  highlight: "animated short.",   // bagian headline yang diwarnai emerald
   ...
 };
 ```

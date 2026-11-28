@@ -108,7 +108,7 @@ export function FloatingWhatsApp() {
         <span
           role="tooltip"
           className={cn(
-            "pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-full border border-line-2 bg-card px-3.5 py-2 text-xs font-medium text-fg opacity-0 shadow-lg transition-all duration-300",
+            "pointer-events-none absolute right-full top-1/2 mr-3 -translate-y-1/2 translate-x-1 whitespace-nowrap rounded-md border border-line bg-card px-3.5 py-2 text-xs font-medium text-fg opacity-0 shadow-lg transition-all duration-300",
             "group-hover:translate-x-0 group-hover:opacity-100",
             url ? "group-has-[:focus-visible]:translate-x-0 group-has-[:focus-visible]:opacity-100" : "",
           )}

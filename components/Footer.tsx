@@ -13,8 +13,8 @@ const socialIcons: Record<SocialPlatform, (p: { className?: string }) => React.J
   youtube: YouTubeIcon,
 };
 
-const headingClass = "font-mono text-[0.6875rem] uppercase tracking-[0.2em] text-subtle";
-const linkClass = "inline-flex min-h-9 items-center gap-2 text-[0.9375rem] text-muted transition-colors hover:text-orange";
+const headingClass = "text-sm font-medium text-fg";
+const linkClass = "inline-flex min-h-9 items-center gap-2 text-[0.9375rem] text-muted transition-colors duration-200 hover:text-accent-2";
 
 export function Footer() {
   const socials = socialLinks
@@ -33,7 +33,7 @@ export function Footer() {
               <Logo />
             </a>
             <p className="mt-5 text-[0.9375rem] leading-relaxed text-muted">{footerContent.description}</p>
-            <p className="mt-5 font-mono text-xs uppercase tracking-[0.16em] text-orchid">{site.tagline}</p>
+            <p className="mt-5 text-sm text-mint">{site.tagline}</p>
           </div>
 
           <nav aria-label="Navigasi footer">

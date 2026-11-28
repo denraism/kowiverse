@@ -75,7 +75,7 @@ export function VideoModal({ video, index, onClose }: VideoModalProps) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
         >
-          <div className="absolute inset-0 bg-bg/90 backdrop-blur-md" onClick={onClose} aria-hidden="true" />
+          <div className="absolute inset-0 bg-bg/90 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
 
           <m.div
             ref={dialogRef}
@@ -86,8 +86,8 @@ export function VideoModal({ video, index, onClose }: VideoModalProps) {
             className="relative flex max-h-full w-full max-w-5xl flex-col items-center"
             initial={{ opacity: 0, y: 24, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.98 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: 10, scale: 0.98, transition: { duration: 0.18 } }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
             <div
               className="flex w-full flex-col"
@@ -95,7 +95,7 @@ export function VideoModal({ video, index, onClose }: VideoModalProps) {
             >
               <div className="mb-4 flex items-start justify-between gap-4">
                 <div className="min-w-0">
-                  <p className="font-mono text-[0.6875rem] uppercase tracking-[0.18em] text-orange-soft">
+                  <p className="text-sm font-medium text-accent-2">
                     {video.category} · {video.aspectRatio}
                   </p>
                   <h3 id="video-modal-title" className="mt-1.5 text-lg font-semibold tracking-[-0.02em] sm:text-xl">
@@ -107,13 +107,13 @@ export function VideoModal({ video, index, onClose }: VideoModalProps) {
                   type="button"
                   onClick={onClose}
                   aria-label="Tutup video (Esc)"
-                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-line-2 bg-card text-fg transition-colors hover:border-orange hover:bg-orange hover:text-ink"
+                  className="inline-flex size-11 shrink-0 items-center justify-center rounded-(--radius-control) border border-line bg-card text-fg transition-colors duration-200 hover:border-white/15 hover:bg-card-2"
                 >
                   <X className="size-5" aria-hidden="true" />
                 </button>
               </div>
 
-              <div className="relative w-full overflow-hidden rounded-2xl border border-line bg-bg shadow-elevated" style={{ aspectRatio: `${r}` }}>
+              <div className="relative w-full overflow-hidden rounded-(--radius-panel) border border-line bg-bg shadow-elevated" style={{ aspectRatio: `${r}` }}>
                 {hasVideo ? (
                   <video
                     ref={videoRef}
@@ -131,7 +131,7 @@ export function VideoModal({ video, index, onClose }: VideoModalProps) {
                   <>
                     <VideoPlaceholderArt category={video.category} index={index} />
                     <div className="absolute inset-0 flex flex-col items-center justify-end gap-2 bg-gradient-to-t from-bg/95 via-bg/40 to-transparent p-6 text-center">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-purple/70 px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.14em] text-fg ring-1 ring-orchid/40">
+                      <span className="inline-flex items-center gap-1.5 rounded-md bg-deep/80 px-3 py-1 text-xs font-medium text-mint ring-1 ring-accent/40">
                         <Clock className="size-3.5" aria-hidden="true" />
                         {showcaseContent.comingSoonLabel}
                       </span>
