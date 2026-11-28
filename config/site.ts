@@ -52,13 +52,10 @@ export const site = {
 
 /** Navigation items. `href` must match a section id on the page. */
 export const navItems = [
-  { label: "Home", href: "#home" },
   { label: "Showcase", href: "#showcase" },
+  { label: "Workflow", href: "#how-it-works" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Features", href: "#features" },
-  { label: "How It Works", href: "#how-it-works" },
   { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
 ] as const;
 
 /** The "Get Started" button in the navbar. */

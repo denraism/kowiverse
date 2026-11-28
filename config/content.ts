@@ -5,6 +5,7 @@
  *  All visible section text lives here. Edit freely — components
  *  read from this file, so you never need to touch the layout.
  *
+ *  Workflow steps → workflowContent below (mirrors the package contents)
  *  Pricing copy  → config/pricing.ts
  *  FAQ           → config/faq.ts
  *  Testimonials  → config/testimonials.ts
@@ -47,62 +48,46 @@ export const showcaseContent = {
     "Video untuk slot ini sedang disiapkan.",
 };
 
-export const featuresContent = {
-  label: "Features",
-  title: "Everything in one workflow.",
-  description:
-    "Yang kamu perlukan untuk membuat animasi pendek dengan AI, tanpa menyusun alur kerja dari nol.",
-  items: [
-    {
-      icon: "prompts",
-      title: "Ready-to-copy prompts",
-      description:
-        "Prompt untuk menulis naskah dan membagi adegan. Salin, sesuaikan, lalu jalankan.",
-    },
-    {
-      icon: "inspiration",
-      title: "Creative direction",
-      description:
-        "Ide, gaya visual, dan referensi untuk karya berikutnya.",
-    },
-    {
-      icon: "examples",
-      title: "Real examples",
-      description:
-        "Lihat hasil jadinya dulu, supaya kamu tahu apa yang bisa dibuat sebelum mulai.",
-    },
-    {
-      icon: "workflow",
-      title: "Clear steps",
-      description:
-        "Dari menyiapkan alat sampai video siap ditinjau. Tidak perlu pengalaman animasi.",
-    },
-  ] as const,
-};
-
-export const howItWorksContent = {
-  label: "How it works",
-  title: "Three steps to your first short.",
-  description: "Dari pembelian sampai karya pertamamu.",
+/**
+ * Workflow — what Kowi Metal walks you through, in order.
+ * Each step maps to the package contents in config/pricing.ts; keep them in sync.
+ * The hero preview window reuses the step titles and tools.
+ */
+export const workflowContent = {
+  label: "Workflow",
+  title: "From idea to finished video.",
+  description: "Kowi Metal memandu kamu lewat empat tahap. Tiap tahap punya prompt atau petunjuknya sendiri.",
   steps: [
     {
       number: "01",
-      title: "Choose a package",
-      description:
-        "Pilih paket yang sesuai dengan kebutuhanmu.",
+      title: "Write the script",
+      tool: "Google AI Studio",
+      description: "Prompt siap salin untuk menulis naskah 1–2 menit dan membaginya per adegan.",
     },
     {
       number: "02",
-      title: "Get access",
-      description:
-        "Bayar lewat Lynk.id, lalu ikuti petunjuk akses yang diberikan.",
+      title: "Set up your tools",
+      tool: "Panduan",
+      description: "Siapkan semua alat yang dibutuhkan, langkah demi langkah.",
     },
     {
       number: "03",
-      title: "Start creating",
-      description:
-        "Ikuti panduannya dan buat animasi versimu sendiri.",
+      title: "Animate",
+      tool: "Claude Code",
+      description: "Pakai skill animasi untuk mengubah naskah menjadi video.",
     },
+    {
+      number: "04",
+      title: "Review",
+      tool: "Video",
+      description: "Tinjau hasilnya dan revisi bagian yang perlu.",
+    },
+  ],
+  /** Short facts under the steps. Keep them 100% true. */
+  points: [
+    { title: "Untuk pemula", text: "Tidak perlu pengalaman animasi." },
+    { title: "Prompt siap salin", text: "Salin, sesuaikan, lalu jalankan." },
+    { title: "Contoh nyata", text: "Lihat hasil jadinya di Showcase." },
   ],
 };
 
@@ -111,6 +96,13 @@ export const pricingContent = {
   title: "Simple pricing.",
   description:
     "Bayar lewat Lynk.id, lalu dapatkan prompt, panduan, dan alur kerja lengkapnya.",
+  stepsTitle: "Cara membeli",
+  /** How buying works — shown next to the package card. */
+  steps: [
+    { title: "Choose a package", text: "Pilih paket yang sesuai dengan kebutuhanmu." },
+    { title: "Pay via Lynk.id", text: "Pembayaran diproses oleh Lynk.id." },
+    { title: "Get access", text: "Ikuti petunjuk akses yang diberikan setelah pembayaran." },
+  ],
   recommendedLabel: "Recommended",
   priceFallback: "Segera diumumkan",
   priceFallbackNote: "Harga akan segera diumumkan.",
@@ -118,10 +110,7 @@ export const pricingContent = {
   featuresLabel: "Isi paket",
   unavailableNote: "Link pembelian sedang disiapkan.",
   checkoutNote: "Pembayaran diproses oleh Lynk.id.",
-  trustPoints: [
-    "Pembayaran aman lewat Lynk.id",
-    "Produk digital — petunjuk akses tersedia setelah pembayaran",
-  ],
+  trustPoints: ["Pembayaran aman lewat Lynk.id", "Produk digital"],
   questionPrompt: "Ada pertanyaan sebelum membeli?",
   questionCta: "Tanya via WhatsApp",
 };

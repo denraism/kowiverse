@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ─── Design tokens ───────────────────────────────────────────
-   KowiVerse · Emerald Minimal. This block is the single source of
+   KowiVerse · Emerald. Raycast/Linear-inspired. This block is the single source of
    truth — components only use these tokens (bg-card, text-muted,
    border-line, bg-accent …). Near-black neutral surfaces, hairline
    translucent borders, and emerald used only as an accent:
@@ -9,10 +9,10 @@
    ──────────────────────────────────────────────────────────── */
 @theme {
   /* Backgrounds & surfaces */
-  --color-bg: #080d0b;        /* main background */
-  --color-bg-2: #0d1511;      /* secondary background (alternating bands) */
-  --color-card: #111c16;      /* surface */
-  --color-card-2: #17251d;    /* elevated surface / hover */
+  --color-bg: #090a0b;        /* main background */
+  --color-bg-2: #101214;      /* secondary background (alternating bands) */
+  --color-card: #15191a;      /* surface */
+  --color-card-2: #1b2022;    /* derived: elevated surface / hover */
 
   /* Borders — translucent so they sit naturally on every surface */
   --color-line: rgb(255 255 255 / 0.08);  /* subtle */
@@ -23,15 +23,15 @@
   --color-accent-2: #34d399;    /* secondary — hover, small accent text */
   --color-accent-soft: #34d399; /* emerald text on dark surfaces */
   --color-mint: #6ee7b7;        /* soft — quiet highlights */
-  --color-deep: #0f2a1f;        /* derived: faint emerald tint for selected chips/badges */
-  --color-deep-2: #0b1813;      /* derived: deepest tint for gradients */
+  --color-deep: #10231c;        /* derived: faint emerald tint for selected chips/badges */
+  --color-deep-2: #0c1512;      /* derived: deepest tint for gradients */
   --color-bronze: #c98a5e;      /* Kowi Bronze accent (package hidden for now) */
 
   /* Text */
-  --color-fg: #f0fdf4;          /* primary */
-  --color-muted: #a7b8ae;       /* secondary */
-  --color-subtle: #788880;      /* muted — brief value #718078, lifted slightly to pass AA (4.7:1) on cards */
-  --color-ink: #06100c;         /* text on emerald */
+  --color-fg: #f5f7f6;          /* primary */
+  --color-muted: #a1aaa5;       /* secondary */
+  --color-subtle: #7c8680;      /* muted — brief value #737d77, lifted slightly to pass AA (4.7:1) on cards */
+  --color-ink: #06100c;         /* text on emerald (≈ 7.6:1) */
 
   /* Semantic */
   --color-success: #34d399;

@@ -23,8 +23,40 @@ export function Testimonials() {
 
   if (!items.length && !testimonialsContent.showEmptyState) return null;
 
+  // No real testimonials yet → a slim, honest invitation instead of an empty section.
+  if (!items.length) {
+    return (
+      <section id="testimonials" aria-labelledby="testimonials-title" className="border-t border-line bg-bg py-10 md:py-12">
+        <Reveal className="container-page flex flex-col gap-5 md:flex-row md:items-center md:justify-between md:gap-10">
+          <div className="flex items-start gap-4">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-(--radius-control) border border-line bg-card text-accent-2">
+              <MessageSquareQuote className="size-[1.125rem]" aria-hidden="true" />
+            </span>
+            <div>
+              <h2 id="testimonials-title" className="text-base font-semibold tracking-[-0.015em]">
+                {testimonialsContent.emptyTitle}
+              </h2>
+              <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted">{testimonialsContent.emptyDescription}</p>
+            </div>
+          </div>
+          {whatsappUrl ? (
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-wa-avoid
+              className={cn(buttonStyles.secondary, "min-h-11 w-full shrink-0 px-5 text-sm md:w-auto")}
+            >
+              {testimonialsContent.emptyCta}
+            </a>
+          ) : null}
+        </Reveal>
+      </section>
+    );
+  }
+
   return (
-    <section id="testimonials" aria-labelledby="testimonials-title" className="section-y relative border-t border-line/60 bg-bg-2">
+    <section id="testimonials" aria-labelledby="testimonials-title" className="section-y relative border-t border-line bg-bg">
       <div className="container-page">
         <SectionHeading
           id="testimonials-title"
@@ -68,32 +100,7 @@ export function Testimonials() {
               );
             })}
           </ul>
-        ) : (
-          <Reveal className="mt-14 md:mt-16">
-            <div className="flex flex-col items-start gap-6 rounded-(--radius-card) border border-line bg-card p-7 sm:p-10 md:flex-row md:items-center md:justify-between">
-              <div className="flex items-start gap-5">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-(--radius-control) border border-line bg-bg-2 text-accent-2">
-                  <MessageSquareQuote className="size-5" aria-hidden="true" />
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold tracking-[-0.02em] sm:text-xl">{testimonialsContent.emptyTitle}</h3>
-                  <p className="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-muted">{testimonialsContent.emptyDescription}</p>
-                </div>
-              </div>
-              {whatsappUrl ? (
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-wa-avoid
-                  className={cn(buttonStyles.secondary, "w-full shrink-0 md:w-auto")}
-                >
-                  {testimonialsContent.emptyCta}
-                </a>
-              ) : null}
-            </div>
-          </Reveal>
-        )}
+        ) : null}
       </div>
     </section>
   );

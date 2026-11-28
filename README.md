@@ -2,7 +2,7 @@
 
 > **From idea to animated short.**
 
-Landing page resmi KowiVerse: bertema Emerald Minimal (gelap netral × aksen emerald), Bahasa Indonesia × English, fully responsive, dengan video showcase, dua paket harga (Kowi Bronze & Kowi Metal) yang terhubung ke Lynk.id, dan tombol WhatsApp mengambang.
+Landing page resmi KowiVerse: bertema Emerald (gelap netral × aksen emerald, terinspirasi Raycast/Linear), Bahasa Indonesia × English, fully responsive, dengan video showcase, dua paket harga (Kowi Bronze & Kowi Metal) yang terhubung ke Lynk.id, dan tombol WhatsApp mengambang.
 
 **Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide Icons · Inter (Geist Mono untuk angka/kode)
 
@@ -59,7 +59,7 @@ npm start
 | File | Isinya |
 | --- | --- |
 | `config/site.ts` | Nama brand, tagline, logo, menu navigasi, SEO |
-| `config/content.ts` | Semua teks section (Hero, Showcase, Features, How It Works, Pricing, Testimonials, FAQ, Final CTA, Footer) |
+| `config/content.ts` | Semua teks section (Hero, Showcase, Workflow, Pricing, Testimonials, FAQ, Final CTA, Footer) |
 | `config/videos.ts` | Daftar video showcase + urutan kategori |
 | `config/pricing.ts` | **Link Lynk.id**, harga, & daftar benefit Kowi Bronze / Kowi Metal |
 | `config/contact.ts` | **Nomor WhatsApp**, pesan default, email |
@@ -74,22 +74,22 @@ npm start
 
 ## 3. Branding & logo
 
-### Warna (Emerald Minimal)
+### Warna (Emerald)
 Semua warna adalah design tokens di blok `@theme` paling atas `app/globals.css`. Komponen hanya memakai nama token (mis. `bg-card`, `text-muted`, `bg-accent`), jadi cukup ubah nilai di sana dan seluruh website ikut berubah.
 
 ```css
---color-bg: #080d0b;                    /* background utama */
---color-bg-2: #0d1511;                  /* background section selang-seling */
---color-card: #111c16;                  /* permukaan / kartu */
---color-card-2: #17251d;                /* permukaan terangkat / hover */
+--color-bg: #090a0b;                    /* background utama */
+--color-bg-2: #101214;                  /* background section selang-seling */
+--color-card: #15191a;                  /* permukaan / kartu */
+--color-card-2: #1b2022;                /* permukaan terangkat / hover */
 --color-line: rgb(255 255 255 / 0.08);  /* border halus */
 --color-line-2: rgb(52 211 153 / 0.25); /* border hover / penekanan */
 --color-accent: #10b981;                /* emerald utama — CTA, state aktif */
 --color-accent-2: #34d399;              /* emerald sekunder — hover, teks aksen kecil */
 --color-mint: #6ee7b7;                  /* emerald lembut — highlight tenang */
---color-fg: #f0fdf4;                    /* teks utama */
---color-muted: #a7b8ae;                 /* teks sekunder */
---color-subtle: #788880;                /* teks redup — label meta kecil (sedikit lebih terang dari #718078 agar lolos AA) */
+--color-fg: #f5f7f6;                    /* teks utama */
+--color-muted: #a1aaa5;                 /* teks sekunder */
+--color-subtle: #7c8680;                /* teks redup — label meta kecil (sedikit lebih terang dari #737d77 agar lolos AA) */
 --color-ink: #06100c;                   /* teks di atas tombol emerald */
 ```
 
@@ -128,7 +128,7 @@ Mengganti dengan logo sendiri:
 
 ## 4. Mengedit teks website
 
-Semua copywriting ada di **`config/content.ts`**, dikelompokkan per section (`heroContent`, `showcaseContent`, `featuresContent`, dst). Edit teks di dalam tanda kutip, simpan, selesai.
+Semua copywriting ada di **`config/content.ts`**, dikelompokkan per section (`heroContent`, `showcaseContent`, `workflowContent`, dst). Langkah di `workflowContent` mengikuti isi paket Kowi Metal di `config/pricing.ts` — ubah keduanya bersamaan. Edit teks di dalam tanda kutip, simpan, selesai.
 
 Contoh — mengganti headline hero:
 

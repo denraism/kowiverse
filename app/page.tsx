@@ -1,9 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { CategoryMarquee } from "@/components/CategoryMarquee";
 import { VideoShowcase } from "@/components/VideoShowcase";
-import { Features } from "@/components/Features";
-import { HowItWorks } from "@/components/HowItWorks";
+import { Workflow } from "@/components/Workflow";
 import { Pricing } from "@/components/Pricing";
 import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
@@ -38,11 +36,9 @@ export default function HomePage() {
       <Navbar />
       <main id="main">
         <Hero />
-        <CategoryMarquee />
         <VideoShowcase />
+        <Workflow />
         <Pricing />
-        <Features />
-        <HowItWorks />
         <Testimonials />
         <FAQ />
         <FinalCTA />
